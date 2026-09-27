@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Sunset coastline</title>
+  <desc id="desc">A clean stylized sunset coastline with ocean, cliffs, and palm silhouettes.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#162447"/>
+      <stop offset=".48" stop-color="#d46863"/>
+      <stop offset=".78" stop-color="#f0a65e"/>
+      <stop offset="1" stop-color="#f9c77e"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123d61"/>
+      <stop offset=".5" stop-color="#0a6d89"/>
+      <stop offset="1" stop-color="#071b34"/>
+    </linearGradient>
+    <linearGradient id="sunset" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff7cf" stop-opacity=".0"/>
+      <stop offset=".55" stop-color="#fff4bf" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#fff7cf" stop-opacity=".0"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#sky)"/>
+  <circle cx="905" cy="205" r="74" fill="#ffd780" opacity=".42" filter="url(#glow)"/>
+  <circle cx="905" cy="205" r="38" fill="#fff2ba"/>
+  <path d="M0 225 C140 210 230 220 340 200 S555 182 690 205 S935 212 1200 188 L1200 420 L0 420Z" fill="url(#sea)"/>
+  <path d="M0 305 C140 286 230 302 340 278 S560 264 680 290 S900 306 1200 260" fill="none" stroke="#dff7ff" stroke-width="7" opacity=".45"/>
+  <path d="M0 335 C160 316 248 329 360 309 S560 298 694 323 S920 343 1200 298" fill="none" stroke="#ffffff" stroke-width="3" opacity=".35"/>
+  <rect x="0" y="215" width="1200" height="95" fill="url(#sunset)" opacity=".55"/>
+
+  <path d="M0 350 L74 318 130 330 190 285 250 302 332 270 405 306 450 420 0 420Z" fill="#08141e"/>
+  <path d="M1200 328 L1122 308 1054 330 978 292 910 318 856 420 1200 420Z" fill="#07111a" opacity=".96"/>
+
+  <g fill="#07111a">
+    <rect x="108" y="105" width="12" height="215" rx="5" transform="rotate(-8 114 210)"/>
+    <path d="M110 118 c-32 -26 -58 -20 -80 -10 22 3 38 12 50 26 -28 -7 -50 -2 -68 11 28 0 48 7 64 22 -18 3 -31 10 -41 22 29 -6 51 -2 72 12 1 -30 3 -55 3 -83Z"/>
+    <path d="M111 120 c27 -30 58 -34 91 -19 -25 2 -43 10 -57 24 28 -4 51 2 68 17 -28 -2 -47 4 -61 17 18 4 31 12 42 23 -30 -7 -53 -2 -77 15 -2 -28 -4 -52 -6 -77Z"/>
+
+    <rect x="205" y="144" width="10" height="180" rx="5" transform="rotate(4 210 235)"/>
+    <path d="M210 153 c-26 -22 -48 -20 -68 -10 20 2 34 9 44 20 -23 -5 -42 0 -57 11 24 0 40 6 53 18 -15 2 -26 8 -34 17 24 -4 41 -1 58 10 1 -25 2 -43 4 -66Z"/>
+    <path d="M211 154 c23 -24 47 -26 75 -15 -21 2 -35 8 -47 19 24 -3 42 1 56 13 -23 -1 -39 4 -50 14 15 3 26 8 35 17 -24 -4 -42 0 -61 12 -2 -20 -4 -40 -8 -60Z"/>
+  </g>
+
+  <path d="M760 260 C840 246 954 248 1082 274" fill="none" stroke="#ffc76a" stroke-width="2" opacity=".5"/>
+  <g fill="#ffd781" opacity=".8">
+    <circle cx="726" cy="266" r="3"/><circle cx="752" cy="258" r="3"/><circle cx="790" cy="252" r="3"/><circle cx="826" cy="251" r="3"/><circle cx="858" cy="255" r="3"/>
+  </g>
+</svg>

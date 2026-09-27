@@ -29,4 +29,4 @@ npm run dev
 npm run build
 ```
 
-GitHub is the source of truth. The `master` branch deploys to GitHub Pages through `.github/workflows/deploy-pages.yml`.
+GitHub is the source of truth. The `master` branch deploys to GitHub Pages through `.github/workflows/deploy-pages.yml` using GitHub Actions and HTTPS.

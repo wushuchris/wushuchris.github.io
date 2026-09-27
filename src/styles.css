@@ -508,3 +508,35 @@ body{
   .project-card__status{font-size:.54rem}
   .project-card__beam{height:2px}
 }
+
+
+/* Desktop Agent Map Composition — deliberate positions, not radial packing */
+@media (max-width:1700px) and (min-width:1201px){
+  .network{min-height:542px}
+  .network__stage{min-height:520px;overflow:hidden}
+  .network__core{width:180px;height:180px}
+  .network__stage::after{width:410px;height:410px}
+  .network__rings span:nth-child(1){width:250px;height:250px}
+  .network__rings span:nth-child(2){width:330px;height:330px}
+  .network__rings span:nth-child(3){width:410px;height:410px}
+  .network__spokes{display:none}
+  .network__category{
+    --radius:0px;
+    width:128px;
+    transform:translate(-50%,-50%);
+  }
+  .network__cluster{width:88px;height:56px}
+  .network__label{font-size:.56rem;line-height:1.08}
+  .network__label strong{white-space:normal}
+  .node--green{left:25%;top:50%}
+  .node--blue{left:34%;top:29%}
+  .node--cyan{left:50%;top:18%}
+  .node--orange{left:68%;top:27%}
+  .node--gold{left:78%;top:46%}
+  .node--violet{left:76%;top:67%}
+  .node--pink{left:64%;top:82%}
+  .node--red{left:48%;top:84%}
+  .node--purple{left:31%;top:75%}
+  .network__intro{left:16px;top:14px}
+  .projects-panel{margin-top:0}
+}

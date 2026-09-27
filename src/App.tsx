@@ -58,7 +58,7 @@ christopher@ai-lab:~$ _`}</pre><div className="terminal-mark"><span>CM</span><st
 }
 
 function HorizonPanel() {
-  return <Panel title="SYSTEM HORIZON" className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.jpg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
+  return <Panel title="SYSTEM HORIZON" className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
 }
 
 export default function App() {

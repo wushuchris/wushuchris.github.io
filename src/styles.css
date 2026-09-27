@@ -479,3 +479,32 @@ body{
   .project-card p{font-size:.57rem;line-height:1.32}
   .project-card__footer{margin-top:5px}
 }
+
+
+/* Final Center Breathing-Room Pass */
+@media (max-width:1700px) and (min-width:1201px){
+  .network{min-height:472px}
+  .network__stage{min-height:450px}
+  .network__intro{left:14px;top:12px}
+  .network__intro strong{font-size:1.18rem}
+  .network__intro span{font-size:.82rem}
+  .network__intro small{font-size:.50rem;max-width:132px;line-height:1.2}
+  .network__core{width:170px;height:170px}
+  .network__category{--radius:174px;width:118px}
+  .network__cluster{width:84px;height:54px}
+  .network__stage::after{width:360px;height:360px}
+  .network__rings span:nth-child(1){width:220px;height:220px}
+  .network__rings span:nth-child(2){width:292px;height:292px}
+  .network__rings span:nth-child(3){width:360px;height:360px}
+  .network__spokes span{width:180px}
+  .projects-panel .panel__header{min-height:32px}
+  .projects-panel .project-grid{padding:5px 7px 6px}
+  .project-card{min-height:104px;padding:6px}
+  .project-card__icon{width:25px;height:25px;flex-basis:25px}
+  .project-card__eyebrow{font-size:.46rem}
+  .project-card h3{font-size:.72rem;line-height:1.05}
+  .project-card p{font-size:.53rem;line-height:1.25}
+  .project-card__footer{margin-top:4px}
+  .project-card__status{font-size:.54rem}
+  .project-card__beam{height:2px}
+}

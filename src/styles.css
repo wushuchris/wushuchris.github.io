@@ -540,3 +540,181 @@ body{
   .network__intro{left:16px;top:14px}
   .projects-panel{margin-top:0}
 }
+
+
+/* Elliptical Centerpiece — final desktop composition */
+@media (max-width:1700px) and (min-width:1201px){
+  .network{
+    min-height:582px;
+  }
+
+  .network__stage{
+    min-height:560px;
+    overflow:hidden;
+  }
+
+  .network__intro{
+    left:16px;
+    top:14px;
+  }
+
+  /* Elliptical reactor core */
+  .network__core{
+    width:220px;
+    height:150px;
+    border-radius:50%;
+  }
+
+  .network__core::before{
+    inset:10px 16px;
+    border-radius:50%;
+  }
+
+  .network__core::after{
+    inset:24px 30px;
+    border-radius:50%;
+  }
+
+  .network__orb{
+    inset:29% 35%;
+    border-radius:50%;
+  }
+
+  /* Elliptical field system */
+  .network__stage::after{
+    width:500px;
+    height:350px;
+    border-radius:50%;
+    animation:none;
+    opacity:.7;
+  }
+
+  .network__rings span:nth-child(1){
+    width:300px;
+    height:210px;
+    border-radius:50%;
+  }
+
+  .network__rings span:nth-child(2){
+    width:395px;
+    height:278px;
+    border-radius:50%;
+  }
+
+  .network__rings span:nth-child(3){
+    width:500px;
+    height:350px;
+    border-radius:50%;
+  }
+
+  /* Designed oval layout for the nine capability zones */
+  .network__category{
+    width:132px;
+    transform:translate(-50%,-50%);
+  }
+
+  .network__cluster{
+    width:90px;
+    height:56px;
+  }
+
+  .network__label{
+    font-size:.57rem;
+    line-height:1.08;
+  }
+
+  .node--green{
+    left:26%;
+    top:49%;
+  }
+
+  .node--blue{
+    left:35%;
+    top:29%;
+  }
+
+  .node--cyan{
+    left:50%;
+    top:17%;
+  }
+
+  .node--orange{
+    left:68%;
+    top:27%;
+  }
+
+  .node--gold{
+    left:79%;
+    top:46%;
+  }
+
+  .node--violet{
+    left:76%;
+    top:66%;
+  }
+
+  .node--pink{
+    left:63%;
+    top:81%;
+  }
+
+  .node--red{
+    left:47%;
+    top:86%;
+  }
+
+  .node--purple{
+    left:30%;
+    top:74%;
+  }
+
+  /* Make bottom labels explicitly readable */
+  .node--red .network__label,
+  .node--pink .network__label,
+  .node--purple .network__label{
+    margin-bottom:7px;
+  }
+
+  .node--red .network__label strong,
+  .node--pink .network__label strong,
+  .node--purple .network__label strong{
+    white-space:normal;
+  }
+
+  /* Give the hero map priority over the project strip */
+  .projects-panel .panel__header{
+    min-height:30px;
+  }
+
+  .projects-panel .project-grid{
+    padding:5px 7px 6px;
+  }
+
+  .project-card{
+    min-height:98px;
+    padding:6px;
+  }
+
+  .project-card__icon{
+    width:24px;
+    height:24px;
+    flex-basis:24px;
+  }
+
+  .project-card h3{
+    font-size:.70rem;
+  }
+
+  .project-card p{
+    font-size:.51rem;
+    line-height:1.22;
+  }
+
+  .project-card__eyebrow{
+    font-size:.44rem;
+  }
+
+  .project-card__footer{
+    margin-top:3px;
+  }
+}

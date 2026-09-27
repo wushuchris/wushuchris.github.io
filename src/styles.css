@@ -455,3 +455,27 @@ body{
   .network__stage::before,.network__stage::after,.network__core::before,.network__core::after,.network__orb{animation:none!important}
   .button,.project-card,.network__cluster{transition:none!important}
 }
+
+
+/* Centerpiece Layout Pass */
+@media (max-width:1700px) and (min-width:1201px){
+  .network{min-height:454px}
+  .network__stage{min-height:432px}
+  .network__core{width:164px;height:164px}
+  .network__category{--radius:166px;width:120px}
+  .network__cluster{width:84px;height:54px}
+  .network__cluster i{width:14px;height:14px}
+  .network__stage::after{width:344px;height:344px}
+  .network__rings span:nth-child(1){width:214px;height:214px}
+  .network__rings span:nth-child(2){width:280px;height:280px}
+  .network__rings span:nth-child(3){width:344px;height:344px}
+  .network__spokes span{width:171px}
+  .network__intro{top:16px}
+  .projects-panel .project-grid{padding:7px}
+  .project-card{min-height:116px;padding:7px}
+  .project-card__icon{width:28px;height:28px;flex-basis:28px}
+  .project-card__top{gap:6px}
+  .project-card h3{font-size:.76rem}
+  .project-card p{font-size:.57rem;line-height:1.32}
+  .project-card__footer{margin-top:5px}
+}

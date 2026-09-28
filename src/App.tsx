@@ -27,12 +27,8 @@ function Hero() {
 }
 
 function AgentNetwork() {
-  const centerX = 50
-  const centerY = 50
-  const orbitRadiusX = 28
-  const orbitRadiusY = 34
-  const labelOffset = 66
-  const startAngle = -90
+  const orbitRadius = 190
+  const labelOffset = 68
   const angleStep = 360 / categories.length
 
   return (
@@ -58,12 +54,15 @@ function AgentNetwork() {
         </div>
 
         {categories.map((category, index) => {
-          const angle = startAngle + index * angleStep
+          const angle = index * angleStep
           const radians = (angle * Math.PI) / 180
-          const left = centerX + orbitRadiusX * Math.cos(radians)
-          const top = centerY + orbitRadiusY * Math.sin(radians)
-          const labelX = Math.cos(radians) * labelOffset
-          const labelY = Math.sin(radians) * labelOffset
+          const labelX = Math.sin(radians) * labelOffset
+          const labelY = -Math.cos(radians) * labelOffset
+
+          const nodeStyle = {
+            '--angle': `${angle}deg`,
+            '--orbit-radius': `${orbitRadius}px`,
+          } as CSSProperties
 
           const labelStyle: CSSProperties = {
             left: '50%',
@@ -75,7 +74,7 @@ function AgentNetwork() {
             <div
               className={`network__category ${category.className}`}
               key={category.name}
-              style={{ left: `${left.toFixed(2)}%`, top: `${top.toFixed(2)}%` }}
+              style={nodeStyle}
             >
               <div className="network__cluster">
                 <b className="network__icon">{category.icon}</b>

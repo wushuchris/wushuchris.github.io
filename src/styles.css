@@ -628,3 +628,52 @@ body{
     margin-top:2px;
   }
 }
+
+
+/* Capability label clearance */
+@media (min-width:1201px){
+  .network__label{
+    width:132px;
+  }
+
+  .label--top .network__label{
+    left:50%;
+    bottom:calc(100% + 12px);
+    top:auto;
+    transform:translateX(-50%);
+    text-align:center;
+    align-items:center;
+  }
+
+  .label--right .network__label{
+    left:calc(100% + 14px);
+    right:auto;
+    top:50%;
+    transform:translateY(-50%);
+    text-align:left;
+    align-items:flex-start;
+  }
+
+  .label--bottom .network__label{
+    left:50%;
+    top:calc(100% + 12px);
+    bottom:auto;
+    transform:translateX(-50%);
+    text-align:center;
+    align-items:center;
+  }
+
+  .label--left .network__label{
+    right:calc(100% + 14px);
+    left:auto;
+    top:50%;
+    transform:translateY(-50%);
+    text-align:right;
+    align-items:flex-end;
+  }
+
+  .label--left .network__label,
+  .label--right .network__label{
+    width:142px;
+  }
+}

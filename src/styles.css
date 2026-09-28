@@ -782,3 +782,146 @@ body{
     opacity:.52;
   }
 }
+
+
+/* Wide desktop centerpiece fix — applies to ALL desktop widths */
+@media (min-width:1201px){
+  .network{
+    min-height:560px;
+  }
+
+  .network__stage{
+    min-height:538px;
+    overflow:hidden;
+  }
+
+  .network__intro{
+    left:16px;
+    top:14px;
+  }
+
+  /* Elliptical reactor core on every desktop */
+  .network__core{
+    width:220px;
+    height:150px;
+    border-radius:50%;
+  }
+
+  .network__core::before{
+    inset:10px 16px;
+    border-radius:50%;
+  }
+
+  .network__core::after{
+    inset:24px 30px;
+    border-radius:50%;
+  }
+
+  .network__orb{
+    inset:29% 35%;
+    border-radius:50%;
+  }
+
+  /* Elliptical field rings */
+  .network__stage::after{
+    width:min(72%, 560px);
+    height:360px;
+    border-radius:50%;
+    opacity:.38;
+    animation:none;
+  }
+
+  .network__rings span:nth-child(1){
+    width:min(43%, 320px);
+    height:210px;
+    border-radius:50%;
+    opacity:.56;
+  }
+
+  .network__rings span:nth-child(2){
+    width:min(57%, 430px);
+    height:285px;
+    border-radius:50%;
+    opacity:.50;
+  }
+
+  .network__rings span:nth-child(3){
+    width:min(72%, 560px);
+    height:360px;
+    border-radius:50%;
+    opacity:.44;
+  }
+
+  .network__spokes{
+    display:none;
+  }
+
+  /* Deliberate oval composition */
+  .network__category{
+    --radius:0px;
+    width:136px;
+    transform:translate(-50%,-50%);
+    z-index:8;
+  }
+
+  .network__cluster{
+    width:92px;
+    height:58px;
+  }
+
+  .network__label{
+    font-size:.58rem;
+    line-height:1.08;
+  }
+
+  .node--green{left:26%;top:49%}
+  .node--blue{left:35%;top:29%}
+  .node--cyan{left:50%;top:17%}
+  .node--orange{left:68%;top:27%}
+  .node--gold{left:79%;top:46%}
+  .node--violet{left:76%;top:66%}
+  .node--pink{left:64%;top:80%}
+  .node--purple{left:30%;top:73%}
+
+  /* Multimodal is intentionally composed differently:
+     cluster first, label below, no absolute positioning */
+  .node--red{
+    left:47%;
+    top:81%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:154px;
+    z-index:20;
+  }
+
+  .node--red .network__cluster{
+    order:1;
+    flex:0 0 auto;
+    position:relative;
+    z-index:21;
+  }
+
+  .node--red .network__label{
+    order:2;
+    position:static;
+    width:154px;
+    margin:8px 0 0;
+    transform:none;
+    text-align:center;
+    z-index:22;
+    line-height:1.08;
+    text-shadow:
+      0 0 8px rgba(244,65,87,.75),
+      0 2px 4px rgba(0,0,0,.95);
+  }
+
+  .node--red .network__label strong{
+    display:block;
+    white-space:normal;
+  }
+
+  .node--red .network__label span{
+    margin-top:2px;
+  }
+}

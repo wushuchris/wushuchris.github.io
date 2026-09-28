@@ -27,7 +27,7 @@ function Hero() {
 }
 
 function AgentNetwork() {
-  const orbitRadius = 190
+  const orbitRadius = 178
   const angleStep = 360 / categories.length
 
   return (

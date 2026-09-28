@@ -457,334 +457,7 @@ body{
 }
 
 
-/* Centerpiece Layout Pass */
-@media (max-width:1700px) and (min-width:1201px){
-  .network{min-height:454px}
-  .network__stage{min-height:432px}
-  .network__core{width:164px;height:164px}
-  .network__category{--radius:166px;width:120px}
-  .network__cluster{width:84px;height:54px}
-  .network__cluster i{width:14px;height:14px}
-  .network__stage::after{width:344px;height:344px}
-  .network__rings span:nth-child(1){width:214px;height:214px}
-  .network__rings span:nth-child(2){width:280px;height:280px}
-  .network__rings span:nth-child(3){width:344px;height:344px}
-  .network__spokes span{width:171px}
-  .network__intro{top:16px}
-  .projects-panel .project-grid{padding:7px}
-  .project-card{min-height:116px;padding:7px}
-  .project-card__icon{width:28px;height:28px;flex-basis:28px}
-  .project-card__top{gap:6px}
-  .project-card h3{font-size:.76rem}
-  .project-card p{font-size:.57rem;line-height:1.32}
-  .project-card__footer{margin-top:5px}
-}
-
-
-/* Final Center Breathing-Room Pass */
-@media (max-width:1700px) and (min-width:1201px){
-  .network{min-height:472px}
-  .network__stage{min-height:450px}
-  .network__intro{left:14px;top:12px}
-  .network__intro strong{font-size:1.18rem}
-  .network__intro span{font-size:.82rem}
-  .network__intro small{font-size:.50rem;max-width:132px;line-height:1.2}
-  .network__core{width:170px;height:170px}
-  .network__category{--radius:174px;width:118px}
-  .network__cluster{width:84px;height:54px}
-  .network__stage::after{width:360px;height:360px}
-  .network__rings span:nth-child(1){width:220px;height:220px}
-  .network__rings span:nth-child(2){width:292px;height:292px}
-  .network__rings span:nth-child(3){width:360px;height:360px}
-  .network__spokes span{width:180px}
-  .projects-panel .panel__header{min-height:32px}
-  .projects-panel .project-grid{padding:5px 7px 6px}
-  .project-card{min-height:104px;padding:6px}
-  .project-card__icon{width:25px;height:25px;flex-basis:25px}
-  .project-card__eyebrow{font-size:.46rem}
-  .project-card h3{font-size:.72rem;line-height:1.05}
-  .project-card p{font-size:.53rem;line-height:1.25}
-  .project-card__footer{margin-top:4px}
-  .project-card__status{font-size:.54rem}
-  .project-card__beam{height:2px}
-}
-
-
-/* Desktop Agent Map Composition — deliberate positions, not radial packing */
-@media (max-width:1700px) and (min-width:1201px){
-  .network{min-height:542px}
-  .network__stage{min-height:520px;overflow:hidden}
-  .network__core{width:180px;height:180px}
-  .network__stage::after{width:410px;height:410px}
-  .network__rings span:nth-child(1){width:250px;height:250px}
-  .network__rings span:nth-child(2){width:330px;height:330px}
-  .network__rings span:nth-child(3){width:410px;height:410px}
-  .network__spokes{display:none}
-  .network__category{
-    --radius:0px;
-    width:128px;
-    transform:translate(-50%,-50%);
-  }
-  .network__cluster{width:88px;height:56px}
-  .network__label{font-size:.56rem;line-height:1.08}
-  .network__label strong{white-space:normal}
-  .node--green{left:25%;top:50%}
-  .node--blue{left:34%;top:29%}
-  .node--cyan{left:50%;top:18%}
-  .node--orange{left:68%;top:27%}
-  .node--gold{left:78%;top:46%}
-  .node--violet{left:76%;top:67%}
-  .node--pink{left:64%;top:82%}
-  .node--red{left:48%;top:84%}
-  .node--purple{left:31%;top:75%}
-  .network__intro{left:16px;top:14px}
-  .projects-panel{margin-top:0}
-}
-
-
-/* Elliptical Centerpiece — final desktop composition */
-@media (max-width:1700px) and (min-width:1201px){
-  .network{
-    min-height:582px;
-  }
-
-  .network__stage{
-    min-height:560px;
-    overflow:hidden;
-  }
-
-  .network__intro{
-    left:16px;
-    top:14px;
-  }
-
-  /* Elliptical reactor core */
-  .network__core{
-    width:220px;
-    height:150px;
-    border-radius:50%;
-  }
-
-  .network__core::before{
-    inset:10px 16px;
-    border-radius:50%;
-  }
-
-  .network__core::after{
-    inset:24px 30px;
-    border-radius:50%;
-  }
-
-  .network__orb{
-    inset:29% 35%;
-    border-radius:50%;
-  }
-
-  /* Elliptical field system */
-  .network__stage::after{
-    width:500px;
-    height:350px;
-    border-radius:50%;
-    animation:none;
-    opacity:.7;
-  }
-
-  .network__rings span:nth-child(1){
-    width:300px;
-    height:210px;
-    border-radius:50%;
-  }
-
-  .network__rings span:nth-child(2){
-    width:395px;
-    height:278px;
-    border-radius:50%;
-  }
-
-  .network__rings span:nth-child(3){
-    width:500px;
-    height:350px;
-    border-radius:50%;
-  }
-
-  /* Designed oval layout for the nine capability zones */
-  .network__category{
-    width:132px;
-    transform:translate(-50%,-50%);
-  }
-
-  .network__cluster{
-    width:90px;
-    height:56px;
-  }
-
-  .network__label{
-    font-size:.57rem;
-    line-height:1.08;
-  }
-
-  .node--green{
-    left:26%;
-    top:49%;
-  }
-
-  .node--blue{
-    left:35%;
-    top:29%;
-  }
-
-  .node--cyan{
-    left:50%;
-    top:17%;
-  }
-
-  .node--orange{
-    left:68%;
-    top:27%;
-  }
-
-  .node--gold{
-    left:79%;
-    top:46%;
-  }
-
-  .node--violet{
-    left:76%;
-    top:66%;
-  }
-
-  .node--pink{
-    left:63%;
-    top:81%;
-  }
-
-  .node--red{
-    left:47%;
-    top:86%;
-  }
-
-  .node--purple{
-    left:30%;
-    top:74%;
-  }
-
-  /* Make bottom labels explicitly readable */
-  .node--red .network__label,
-  .node--pink .network__label,
-  .node--purple .network__label{
-    margin-bottom:7px;
-  }
-
-  .node--red .network__label strong,
-  .node--pink .network__label strong,
-  .node--purple .network__label strong{
-    white-space:normal;
-  }
-
-  /* Give the hero map priority over the project strip */
-  .projects-panel .panel__header{
-    min-height:30px;
-  }
-
-  .projects-panel .project-grid{
-    padding:5px 7px 6px;
-  }
-
-  .project-card{
-    min-height:98px;
-    padding:6px;
-  }
-
-  .project-card__icon{
-    width:24px;
-    height:24px;
-    flex-basis:24px;
-  }
-
-  .project-card h3{
-    font-size:.70rem;
-  }
-
-  .project-card p{
-    font-size:.51rem;
-    line-height:1.22;
-  }
-
-  .project-card__eyebrow{
-    font-size:.44rem;
-  }
-
-  .project-card__footer{
-    margin-top:3px;
-  }
-}
-
-
-/* Multimodal label readability fix */
-@media (max-width:1700px) and (min-width:1201px){
-  .node--red{
-    left:46%;
-    top:82%;
-    z-index:8;
-  }
-
-  .node--pink{
-    left:64%;
-    top:78%;
-  }
-
-  .node--purple{
-    left:30%;
-    top:72%;
-  }
-
-  .node--red .network__label{
-    position:absolute;
-    top:calc(100% + 8px);
-    left:50%;
-    width:148px;
-    margin:0;
-    transform:translateX(-50%);
-    text-align:center;
-    z-index:30;
-    line-height:1.08;
-    pointer-events:none;
-    text-shadow:
-      0 0 8px rgba(244,65,87,.85),
-      0 2px 4px rgba(0,0,0,.95);
-  }
-
-  .node--red .network__label strong{
-    display:block;
-    white-space:normal;
-  }
-
-  .node--red .network__label span{
-    margin-top:2px;
-  }
-
-  .node--red .network__cluster{
-    position:relative;
-    z-index:10;
-  }
-
-  .node--red .network__label,
-  .node--pink .network__label,
-  .node--purple .network__label{
-    isolation:isolate;
-  }
-
-  .network__stage::after{
-    opacity:.42;
-  }
-
-  .network__rings span{
-    opacity:.52;
-  }
-}
-
-
-/* Wide desktop centerpiece fix — applies to ALL desktop widths */
+/* Desktop Agent Map — single authoritative composition */
 @media (min-width:1201px){
   .network{
     min-height:560px;
@@ -800,10 +473,10 @@ body{
     top:14px;
   }
 
-  /* Elliptical reactor core on every desktop */
+  /* Centered horizontal reactor */
   .network__core{
     width:220px;
-    height:150px;
+    height:154px;
     border-radius:50%;
   }
 
@@ -822,273 +495,127 @@ body{
     border-radius:50%;
   }
 
-  /* Elliptical field rings */
+  /* Elliptical field geometry */
   .network__stage::after{
-    width:min(72%, 560px);
+    width:min(76%, 580px);
     height:360px;
     border-radius:50%;
-    opacity:.38;
+    opacity:.34;
     animation:none;
   }
 
   .network__rings span:nth-child(1){
-    width:min(43%, 320px);
+    width:min(44%, 330px);
     height:210px;
     border-radius:50%;
-    opacity:.56;
+    opacity:.54;
   }
 
   .network__rings span:nth-child(2){
-    width:min(57%, 430px);
+    width:min(59%, 450px);
     height:285px;
     border-radius:50%;
-    opacity:.50;
+    opacity:.48;
   }
 
   .network__rings span:nth-child(3){
-    width:min(72%, 560px);
+    width:min(76%, 580px);
     height:360px;
     border-radius:50%;
-    opacity:.44;
+    opacity:.42;
   }
 
   .network__spokes{
     display:none;
   }
 
-  /* Deliberate oval composition */
+  /* Nodes are geometry; labels live outside that geometry */
   .network__category{
     --radius:0px;
-    width:136px;
+    width:92px;
+    height:58px;
     transform:translate(-50%,-50%);
-    z-index:8;
+    display:grid;
+    place-items:center;
+    z-index:12;
   }
 
   .network__cluster{
     width:92px;
     height:58px;
+    margin:0;
   }
 
   .network__label{
-    font-size:.58rem;
-    line-height:1.08;
-  }
-
-  .node--green{left:26%;top:49%}
-  .node--blue{left:35%;top:29%}
-  .node--cyan{left:50%;top:17%}
-  .node--orange{left:68%;top:27%}
-  .node--gold{left:79%;top:46%}
-  .node--violet{left:76%;top:66%}
-  .node--pink{left:64%;top:80%}
-  .node--purple{left:30%;top:73%}
-
-  /* Multimodal is intentionally composed differently:
-     cluster first, label below, no absolute positioning */
-  .node--red{
-    left:47%;
-    top:81%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:154px;
-    z-index:20;
-  }
-
-  .node--red .network__cluster{
-    order:1;
-    flex:0 0 auto;
-    position:relative;
-    z-index:21;
-  }
-
-  .node--red .network__label{
-    order:2;
-    position:static;
-    width:154px;
-    margin:8px 0 0;
-    transform:none;
+    position:absolute;
+    width:132px;
+    margin:0;
+    z-index:30;
+    font-size:.56rem;
+    line-height:1.12;
     text-align:center;
-    z-index:22;
-    line-height:1.08;
-    text-shadow:
-      0 0 8px rgba(244,65,87,.75),
-      0 2px 4px rgba(0,0,0,.95);
+    pointer-events:none;
+    text-shadow:0 2px 5px rgba(0,0,0,.95);
   }
 
-  .node--red .network__label strong{
+  .network__label strong{
     display:block;
     white-space:normal;
   }
 
-  .node--red .network__label span{
+  .network__label span{
     margin-top:2px;
   }
-}
 
+  /* Symmetric oval placement */
+  .node--cyan{left:50%;top:16%}
 
-/* Professional symmetrical desktop agent composition */
-@media (min-width:1201px){
-  .network{
-    min-height:570px;
-  }
+  .node--blue{left:35%;top:30%}
+  .node--orange{left:65%;top:30%}
 
-  .network__stage{
-    min-height:548px;
-    overflow:hidden;
-  }
+  .node--green{left:28%;top:49%}
+  .node--gold{left:72%;top:49%}
 
-  /* Center reactor stays truly centered */
-  .network__core{
-    left:auto;
-    top:auto;
-    width:224px;
-    height:152px;
-    border-radius:50%;
-  }
+  .node--purple{left:35%;top:68%}
+  .node--violet{left:65%;top:68%}
 
-  .network__stage::after{
-    width:min(74%, 570px);
-    height:366px;
-    opacity:.34;
-  }
+  .node--red{left:42%;top:82%}
+  .node--pink{left:58%;top:82%}
 
-  .network__rings span:nth-child(1){
-    width:min(44%, 330px);
-    height:214px;
-    opacity:.52;
-  }
-
-  .network__rings span:nth-child(2){
-    width:min(58%, 440px);
-    height:288px;
-    opacity:.46;
-  }
-
-  .network__rings span:nth-child(3){
-    width:min(74%, 570px);
-    height:366px;
-    opacity:.40;
-  }
-
-  .network__category{
-    width:138px;
-    transform:translate(-50%,-50%);
-    z-index:10;
-  }
-
-  .network__cluster{
-    width:92px;
-    height:58px;
-  }
-
-  .network__label{
-    font-size:.58rem;
-    line-height:1.08;
+  /* Top anchor label */
+  .node--cyan .network__label{
+    left:50%;
+    bottom:calc(100% + 7px);
+    transform:translateX(-50%);
+    width:146px;
     text-align:center;
   }
 
-  /* One centered top anchor */
-  .node--cyan{
-    left:50%;
-    top:16%;
+  /* All left-side labels point outward */
+  .node--blue .network__label,
+  .node--green .network__label,
+  .node--purple .network__label,
+  .node--red .network__label{
+    right:calc(100% + 10px);
+    top:50%;
+    transform:translateY(-50%);
+    text-align:right;
   }
 
-  /* Mirrored pair 1 */
-  .node--blue{
-    left:34%;
-    top:29%;
+  /* All right-side labels point outward */
+  .node--orange .network__label,
+  .node--gold .network__label,
+  .node--violet .network__label,
+  .node--pink .network__label{
+    left:calc(100% + 10px);
+    top:50%;
+    transform:translateY(-50%);
+    text-align:left;
   }
 
-  .node--orange{
-    left:66%;
-    top:29%;
-  }
-
-  /* Mirrored pair 2 */
-  .node--green{
-    left:26%;
-    top:49%;
-  }
-
-  .node--gold{
-    left:74%;
-    top:49%;
-  }
-
-  /* Mirrored pair 3 */
-  .node--purple{
-    left:34%;
-    top:69%;
-  }
-
-  .node--violet{
-    left:66%;
-    top:69%;
-  }
-
-  /* Mirrored bottom pair */
-  .node--red{
-    left:43%;
-    top:84%;
-  }
-
-  .node--pink{
-    left:57%;
-    top:84%;
-  }
-
-  /* Bottom pair share the same structure: node first, label below */
-  .node--red,
-  .node--pink{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:156px;
-    z-index:20;
-  }
-
-  .node--red .network__cluster,
-  .node--pink .network__cluster{
-    order:1;
-    flex:0 0 auto;
-    position:relative;
-    z-index:21;
-  }
-
+  /* Give the bottom pair a touch more label room */
   .node--red .network__label,
   .node--pink .network__label{
-    order:2;
-    position:static;
-    width:156px;
-    margin:8px 0 0;
-    transform:none;
-    text-align:center;
-    z-index:22;
-    line-height:1.08;
-    pointer-events:none;
-  }
-
-  .node--red .network__label{
-    text-shadow:
-      0 0 8px rgba(244,65,87,.72),
-      0 2px 4px rgba(0,0,0,.95);
-  }
-
-  .node--pink .network__label{
-    text-shadow:
-      0 0 8px rgba(236,75,166,.68),
-      0 2px 4px rgba(0,0,0,.95);
-  }
-
-  .node--red .network__label strong,
-  .node--pink .network__label strong{
-    display:block;
-    white-space:normal;
-  }
-
-  .node--red .network__label span,
-  .node--pink .network__label span{
-    margin-top:2px;
+    width:142px;
   }
 }

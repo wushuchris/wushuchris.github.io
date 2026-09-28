@@ -27,7 +27,73 @@ function Hero() {
 }
 
 function AgentNetwork() {
-  return <section className="network panel" id="agents"><div className="network__intro"><strong>30 AGENTS</strong><span>FOR AI ENGINEERS</span><small>A COMPLETE SYSTEM FOR BUILDING WHAT'S NEXT</small></div><div className="network__stage" aria-label={`${agents.length} agent systems`}><div className="network__rings" aria-hidden="true"><span /><span /><span /></div><div className="network__spokes" aria-hidden="true">{categories.map((_, index) => <span key={index} style={{ '--spoke': `${index * 40 - 90}deg` } as CSSProperties} />)}</div><div className="network__core"><div className="network__orb" aria-hidden="true" /><strong>30 AGENTS</strong><span>FOR AI ENGINEERS</span><small>13 ONLINE</small></div>{categories.map((category, index) => <div className={`network__category ${category.className}`} key={category.name} style={{ '--angle': `${index * 40 - 90}deg` } as CSSProperties}><div className="network__label"><strong>{category.name}</strong><span>{category.range}</span></div><div className="network__cluster"><b className="network__icon">{category.icon}</b><i /><i /><i /></div></div>)}</div></section>
+  const centerX = 50
+  const centerY = 50
+  const orbitRadiusX = 28
+  const orbitRadiusY = 34
+  const labelOffset = 66
+  const startAngle = -90
+  const angleStep = 360 / categories.length
+
+  return (
+    <section className="network panel" id="agents">
+      <div className="network__intro">
+        <strong>30 AGENTS</strong>
+        <span>FOR AI ENGINEERS</span>
+        <small>A COMPLETE SYSTEM FOR BUILDING WHAT&apos;S NEXT</small>
+      </div>
+
+      <div className="network__stage" aria-label={`${agents.length} agent systems`}>
+        <div className="network__rings" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div className="network__core">
+          <div className="network__orb" aria-hidden="true" />
+          <strong>30 AGENTS</strong>
+          <span>FOR AI ENGINEERS</span>
+          <small>13 ONLINE</small>
+        </div>
+
+        {categories.map((category, index) => {
+          const angle = startAngle + index * angleStep
+          const radians = (angle * Math.PI) / 180
+          const left = centerX + orbitRadiusX * Math.cos(radians)
+          const top = centerY + orbitRadiusY * Math.sin(radians)
+          const labelX = Math.cos(radians) * labelOffset
+          const labelY = Math.sin(radians) * labelOffset
+
+          const labelStyle: CSSProperties = {
+            left: '50%',
+            top: '50%',
+            transform: `translate(calc(-50% + ${labelX.toFixed(1)}px), calc(-50% + ${labelY.toFixed(1)}px))`,
+          }
+
+          return (
+            <div
+              className={`network__category ${category.className}`}
+              key={category.name}
+              style={{ left: `${left.toFixed(2)}%`, top: `${top.toFixed(2)}%` }}
+            >
+              <div className="network__cluster">
+                <b className="network__icon">{category.icon}</b>
+                <i />
+                <i />
+                <i />
+              </div>
+
+              <div className="network__label" style={labelStyle}>
+                <strong>{category.name}</strong>
+                <span>{category.range}</span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )
 }
 
 function RecentBuilds() {

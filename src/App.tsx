@@ -27,7 +27,7 @@ function Hero() {
 }
 
 function AgentNetwork() {
-  const orbitRadius = 178
+  const orbitRadius = 184
   const angleStep = 360 / categories.length
 
   return (
@@ -60,14 +60,19 @@ function AgentNetwork() {
             '--orbit-radius': `${orbitRadius}px`,
           } as CSSProperties
 
-          const labelPosition =
-            index === 0
-              ? 'top'
-              : index >= 1 && index <= 3
-                ? 'right'
-                : index >= 4 && index <= 5
-                  ? 'bottom'
-                  : 'left'
+          const labelPositions = [
+            'top',
+            'upper-right',
+            'right',
+            'lower-right',
+            'bottom-right',
+            'bottom-left',
+            'lower-left',
+            'left',
+            'upper-left',
+          ] as const
+
+          const labelPosition = labelPositions[index]
 
           return (
             <div

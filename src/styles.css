@@ -677,3 +677,25 @@ body{
     width:142px;
   }
 }
+
+
+/* Capability edge-clearance refinement */
+@media (min-width:1201px){
+  .label--right .network__label{
+    left:calc(100% + 16px);
+    width:124px;
+  }
+
+  .label--left .network__label{
+    right:calc(100% + 16px);
+    width:124px;
+  }
+
+  .node--orange .network__label{
+    left:calc(100% + 18px);
+  }
+
+  .node--red .network__label{
+    right:calc(100% + 18px);
+  }
+}

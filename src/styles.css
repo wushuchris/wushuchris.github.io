@@ -718,3 +718,67 @@ body{
     margin-top:3px;
   }
 }
+
+
+/* Multimodal label readability fix */
+@media (max-width:1700px) and (min-width:1201px){
+  .node--red{
+    left:46%;
+    top:82%;
+    z-index:8;
+  }
+
+  .node--pink{
+    left:64%;
+    top:78%;
+  }
+
+  .node--purple{
+    left:30%;
+    top:72%;
+  }
+
+  .node--red .network__label{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:50%;
+    width:148px;
+    margin:0;
+    transform:translateX(-50%);
+    text-align:center;
+    z-index:30;
+    line-height:1.08;
+    pointer-events:none;
+    text-shadow:
+      0 0 8px rgba(244,65,87,.85),
+      0 2px 4px rgba(0,0,0,.95);
+  }
+
+  .node--red .network__label strong{
+    display:block;
+    white-space:normal;
+  }
+
+  .node--red .network__label span{
+    margin-top:2px;
+  }
+
+  .node--red .network__cluster{
+    position:relative;
+    z-index:10;
+  }
+
+  .node--red .network__label,
+  .node--pink .network__label,
+  .node--purple .network__label{
+    isolation:isolate;
+  }
+
+  .network__stage::after{
+    opacity:.42;
+  }
+
+  .network__rings span{
+    opacity:.52;
+  }
+}

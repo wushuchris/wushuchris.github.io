@@ -457,14 +457,15 @@ body{
 }
 
 
-/* Desktop Agent Map — single authoritative composition */
+/* Desktop Agent Map — clockwise orbital system */
 @media (min-width:1201px){
   .network{
-    min-height:560px;
+    min-height:568px;
   }
 
   .network__stage{
-    min-height:538px;
+    min-height:546px;
+    position:relative;
     overflow:hidden;
   }
 
@@ -473,11 +474,16 @@ body{
     top:14px;
   }
 
-  /* Centered horizontal reactor */
+  /* The reactor remains horizontal; the capability orbit is circular. */
   .network__core{
     width:220px;
     height:154px;
     border-radius:50%;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:8;
   }
 
   .network__core::before{
@@ -495,67 +501,124 @@ body{
     border-radius:50%;
   }
 
-  /* Elliptical field geometry */
+  /* Clean field geometry around the clockwise capability orbit. */
   .network__stage::after{
-    width:min(76%, 580px);
-    height:360px;
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:488px;
+    height:430px;
+    transform:translate(-50%,-50%);
     border-radius:50%;
-    opacity:.34;
+    opacity:.30;
     animation:none;
   }
 
-  .network__rings span:nth-child(1){
-    width:min(44%, 330px);
-    height:210px;
+  .network__rings{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .network__rings span{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
     border-radius:50%;
-    opacity:.54;
+  }
+
+  .network__rings span:nth-child(1){
+    width:258px;
+    height:258px;
+    opacity:.50;
   }
 
   .network__rings span:nth-child(2){
-    width:min(59%, 450px);
-    height:285px;
-    border-radius:50%;
-    opacity:.48;
+    width:370px;
+    height:370px;
+    opacity:.43;
   }
 
   .network__rings span:nth-child(3){
-    width:min(76%, 580px);
-    height:360px;
-    border-radius:50%;
-    opacity:.42;
+    width:478px;
+    height:478px;
+    opacity:.36;
   }
 
   .network__spokes{
     display:none;
   }
 
-  /* Nodes are geometry; labels live outside that geometry */
+  /*
+   * Capability geometry comes from App.tsx:
+   * Foundations begins at 12 o'clock and every system advances 40° clockwise.
+   */
   .network__category{
     --radius:0px;
-    width:92px;
-    height:58px;
+    position:absolute;
+    width:76px;
+    height:76px;
     transform:translate(-50%,-50%);
     display:grid;
     place-items:center;
     z-index:12;
   }
 
+  /* Each capability group is now circular rather than pill-shaped. */
   .network__cluster{
-    width:92px;
-    height:58px;
+    width:76px;
+    height:76px;
     margin:0;
+    border-radius:50%;
   }
 
+  .network__cluster i{
+    width:12px;
+    height:12px;
+  }
+
+  .network__cluster i:nth-of-type(1){
+    left:7px;
+    top:17px;
+  }
+
+  .network__cluster i:nth-of-type(2){
+    right:7px;
+    top:17px;
+  }
+
+  .network__cluster i:nth-of-type(3){
+    left:50%;
+    bottom:7px;
+    transform:translateX(-50%);
+  }
+
+  .network__icon{
+    width:27px;
+    height:27px;
+  }
+
+  /*
+   * Labels are projected radially outward using the same angle as the node.
+   * The inline transform is calculated in AgentNetwork(), so there are no
+   * one-off label exceptions for Multimodal or any other capability.
+   */
   .network__label{
     position:absolute;
-    width:132px;
+    width:124px;
     margin:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     z-index:30;
-    font-size:.56rem;
+    font-size:.55rem;
     line-height:1.12;
     text-align:center;
     pointer-events:none;
-    text-shadow:0 2px 5px rgba(0,0,0,.95);
+    text-shadow:0 2px 5px rgba(0,0,0,.96);
   }
 
   .network__label strong{
@@ -564,58 +627,7 @@ body{
   }
 
   .network__label span{
+    display:block;
     margin-top:2px;
-  }
-
-  /* Symmetric oval placement */
-  .node--cyan{left:50%;top:16%}
-
-  .node--blue{left:35%;top:30%}
-  .node--orange{left:65%;top:30%}
-
-  .node--green{left:28%;top:49%}
-  .node--gold{left:72%;top:49%}
-
-  .node--purple{left:35%;top:68%}
-  .node--violet{left:65%;top:68%}
-
-  .node--red{left:42%;top:82%}
-  .node--pink{left:58%;top:82%}
-
-  /* Top anchor label */
-  .node--cyan .network__label{
-    left:50%;
-    bottom:calc(100% + 7px);
-    transform:translateX(-50%);
-    width:146px;
-    text-align:center;
-  }
-
-  /* All left-side labels point outward */
-  .node--blue .network__label,
-  .node--green .network__label,
-  .node--purple .network__label,
-  .node--red .network__label{
-    right:calc(100% + 10px);
-    top:50%;
-    transform:translateY(-50%);
-    text-align:right;
-  }
-
-  /* All right-side labels point outward */
-  .node--orange .network__label,
-  .node--gold .network__label,
-  .node--violet .network__label,
-  .node--pink .network__label{
-    left:calc(100% + 10px);
-    top:50%;
-    transform:translateY(-50%);
-    text-align:left;
-  }
-
-  /* Give the bottom pair a touch more label room */
-  .node--red .network__label,
-  .node--pink .network__label{
-    width:142px;
   }
 }

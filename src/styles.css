@@ -802,3 +802,254 @@ body{
     width:116px;
   }
 }
+
+
+/* Premium visual fidelity pass */
+@media (min-width:1201px){
+  /* Let the colored systems dominate over the construction grid */
+  .network__stage::before{
+    opacity:.24;
+    animation-duration:90s;
+  }
+
+  .network__stage::after{
+    opacity:.18;
+  }
+
+  .network__rings span{
+    border-color:rgba(64,165,235,.085);
+    box-shadow:0 0 18px rgba(23,116,215,.035);
+  }
+
+  /* More legible subgroup typography without changing placement */
+  .network__label{
+    font-size:.59rem;
+    line-height:1.14;
+    font-weight:700;
+    letter-spacing:.015em;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.95));
+  }
+
+  .network__label strong{
+    font-weight:800;
+  }
+
+  .network__label span{
+    font-size:.50rem;
+    font-weight:600;
+    color:#9cb9d0;
+    letter-spacing:.06em;
+  }
+
+  /* Layered reactor / command-core treatment */
+  .network__core{
+    isolation:isolate;
+    border-color:rgba(94,216,255,.9);
+    background:
+      radial-gradient(ellipse at 50% 46%,rgba(60,154,255,.42) 0 14%,rgba(18,83,180,.42) 30%,rgba(3,28,61,.92) 58%,rgba(1,9,20,.98) 82%),
+      repeating-linear-gradient(0deg,rgba(84,190,255,.035) 0 1px,transparent 1px 7px);
+    box-shadow:
+      0 0 12px rgba(83,210,255,.70),
+      0 0 34px rgba(27,126,255,.48),
+      0 0 72px rgba(10,73,213,.26),
+      inset 0 0 34px rgba(58,170,255,.28),
+      inset 0 -18px 34px rgba(0,0,0,.32);
+    animation:reactorGlow 5.8s ease-in-out infinite;
+  }
+
+  .network__core::before{
+    border-color:rgba(145,229,255,.52);
+    box-shadow:
+      0 0 12px rgba(86,213,255,.22),
+      inset 0 0 18px rgba(56,174,255,.12);
+    animation:corePulse 4.6s ease-in-out infinite;
+  }
+
+  .network__core::after{
+    border-color:rgba(88,176,255,.34);
+    border-style:dashed;
+    box-shadow:0 0 20px rgba(38,130,255,.12);
+    animation:networkSpin 24s linear infinite;
+  }
+
+  .network__orb{
+    inset:30% 36%;
+    opacity:.88;
+    background:
+      radial-gradient(circle at 34% 28%,#effcff 0 4%,#80e7ff 6%,#1c8dff 18%,#0b42c9 39%,#061d4b 63%,transparent 73%);
+    box-shadow:
+      0 0 16px rgba(150,239,255,.95),
+      0 0 36px rgba(54,175,255,.72),
+      0 0 68px rgba(20,95,255,.48);
+    animation:orbBreathe 4.2s ease-in-out infinite;
+  }
+
+  .network__core strong{
+    font-size:1.32rem;
+    letter-spacing:.015em;
+    text-shadow:
+      0 0 7px rgba(219,248,255,.45),
+      0 0 18px rgba(70,180,255,.42);
+  }
+
+  .network__core > span{
+    letter-spacing:.035em;
+    color:#d5efff;
+  }
+
+  .network__core small{
+    color:#55efc2;
+    text-shadow:0 0 9px rgba(72,239,196,.34);
+  }
+
+  /* Gentle system breathing, staggered by capability */
+  .network__cluster{
+    animation:nodeBreathe 4.8s ease-in-out infinite;
+  }
+
+  .node--blue .network__cluster{animation-delay:-.5s}
+  .node--cyan .network__cluster{animation-delay:-1s}
+  .node--orange .network__cluster{animation-delay:-1.5s}
+  .node--gold .network__cluster{animation-delay:-2s}
+  .node--violet .network__cluster{animation-delay:-2.5s}
+  .node--pink .network__cluster{animation-delay:-3s}
+  .node--red .network__cluster{animation-delay:-3.5s}
+  .node--purple .network__cluster{animation-delay:-4s}
+
+  .network__category:hover{
+    z-index:40;
+  }
+
+  /* Project cards: stronger product identity, still compact */
+  .project-card{
+    border-color:color-mix(in srgb,currentColor 46%,transparent);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.035),
+      inset 0 0 22px rgba(15,95,180,.04),
+      0 8px 20px rgba(0,0,0,.16);
+  }
+
+  .project-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    height:2px;
+    background:linear-gradient(90deg,transparent 3%,currentColor 30%,currentColor 70%,transparent 97%);
+    opacity:.58;
+    box-shadow:0 0 12px currentColor;
+  }
+
+  .project-card__icon{
+    position:relative;
+    overflow:hidden;
+    box-shadow:
+      inset 0 0 16px rgba(52,170,255,.14),
+      0 0 14px rgba(40,147,255,.10);
+  }
+
+  .project-card__icon::after{
+    content:"";
+    position:absolute;
+    width:22px;
+    height:1px;
+    background:currentColor;
+    opacity:.24;
+    transform:rotate(-38deg);
+  }
+
+  .project-card__beam{
+    opacity:.68;
+  }
+
+  /* Cinematic treatment for visual horizon panels */
+  .beach-panel{
+    box-shadow:
+      inset 0 0 28px rgba(0,0,0,.34),
+      0 10px 26px rgba(0,0,0,.20);
+  }
+
+  .beach-panel img{
+    transform:scale(1.018);
+    filter:saturate(1.22) contrast(1.08) brightness(.94);
+  }
+
+  .beach-panel:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 78% 45%,rgba(255,204,108,.12),transparent 26%),
+      linear-gradient(180deg,rgba(4,8,18,.04),rgba(3,10,20,.20) 68%,rgba(2,7,15,.46));
+  }
+
+  .beach-panel blockquote{
+    z-index:4;
+    max-width:190px;
+    padding:7px 9px;
+    border-right:2px solid rgba(255,219,146,.48);
+    background:linear-gradient(90deg,transparent,rgba(1,8,17,.26));
+    text-shadow:0 2px 8px rgba(0,0,0,.92);
+  }
+
+  .horizon-panel{
+    box-shadow:
+      inset 0 0 34px rgba(22,91,191,.08),
+      0 10px 26px rgba(0,0,0,.20);
+  }
+
+  .horizon-image img{
+    transform:scale(1.018);
+    filter:saturate(1.28) contrast(1.10) brightness(.95);
+  }
+
+  .horizon-image:after{
+    background:
+      linear-gradient(90deg,rgba(3,9,20,.92),rgba(3,9,20,.35) 42%,rgba(3,9,20,.06) 72%),
+      linear-gradient(180deg,rgba(4,8,18,.03),rgba(1,6,14,.24));
+  }
+
+  .horizon-copy strong{
+    text-shadow:0 0 12px rgba(95,196,255,.20);
+  }
+}
+
+@keyframes reactorGlow{
+  0%,100%{
+    box-shadow:
+      0 0 12px rgba(83,210,255,.62),
+      0 0 32px rgba(27,126,255,.40),
+      0 0 66px rgba(10,73,213,.22),
+      inset 0 0 32px rgba(58,170,255,.24),
+      inset 0 -18px 34px rgba(0,0,0,.32);
+  }
+  50%{
+    box-shadow:
+      0 0 16px rgba(113,225,255,.82),
+      0 0 42px rgba(42,148,255,.58),
+      0 0 82px rgba(12,86,235,.31),
+      inset 0 0 38px rgba(74,190,255,.34),
+      inset 0 -18px 34px rgba(0,0,0,.32);
+  }
+}
+
+@keyframes orbBreathe{
+  0%,100%{opacity:.76;filter:saturate(1)}
+  50%{opacity:1;filter:saturate(1.18)}
+}
+
+@keyframes nodeBreathe{
+  0%,100%{filter:brightness(.94) saturate(.96)}
+  50%{filter:brightness(1.12) saturate(1.08)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .network__core,
+  .network__orb,
+  .network__cluster{
+    animation:none!important;
+  }
+}

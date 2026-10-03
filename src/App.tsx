@@ -100,12 +100,18 @@ function AgentNetwork() {
 }
 
 function RecentBuilds() {
-  return <Panel title="RECENT BUILDS" action="VIEW ALL →" className="recent-builds"><div className="build-list">{recentBuilds.map((build) => <div className="build-row" key={build.id}><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span></div>)}</div><div className="build-pulse" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span /></div></Panel>
+  return <Panel title="RECENT BUILDS" action="VIEW ALL →" className="recent-builds"><div className="build-list">{recentBuilds.map((build) => <div className="build-row" key={build.id}><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span></div>)}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
+}
+
+function ProjectIcon({ index }: { index: number }) {
+  if (index === 0) return <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="8" r="4"/><circle cx="8" cy="24" r="4"/><circle cx="28" cy="24" r="4"/><path d="M18 12v8M14 21l-4 1M22 21l4 1"/></svg>
+  if (index === 1) return <span className="project-card__f1">F1</span>
+  if (index === 2) return <svg viewBox="0 0 36 36" aria-hidden="true"><path d="M12 26v-9l6-5 5 4 4-7"/><circle cx="12" cy="27" r="4"/><circle cx="18" cy="12" r="3"/><circle cx="27" cy="9" r="3"/><path d="M23 16v8h6"/></svg>
+  return <svg viewBox="0 0 36 36" aria-hidden="true"><path d="M8 28V18M14 28V13M20 28V9M26 28V15M32 28V6"/><path d="M6 28h27"/></svg>
 }
 
 function ProjectSystems() {
-  const icons = ['◉', 'F1', '⚙', '▥']
-  return <Panel title="PROJECT SYSTEMS" action="VIEW ALL →" className="projects-panel" id="projects"><div className="project-grid">{projects.map((project, index) => <article className={`project-card project-card--${project.accent}`} key={project.title} id={project.title === 'Research & Investments' ? 'research' : undefined}><div className="project-card__top"><span className="project-card__icon">{icons[index]}</span><div><div className="project-card__eyebrow">{project.eyebrow}</div><h3>{project.title}</h3></div></div><p>{project.description}</p><div className="project-card__footer"><div className="project-card__status">{project.status}</div><span className="project-card__beam" /></div></article>)}</div></Panel>
+  return <Panel title="PROJECT SYSTEMS" action="VIEW ALL →" className="projects-panel" id="projects"><div className="project-grid">{projects.map((project, index) => <article className={`project-card project-card--${project.accent}`} key={project.title} id={project.title === 'Research & Investments' ? 'research' : undefined}><div className="project-card__top"><span className="project-card__icon"><ProjectIcon index={index} /></span><div><div className="project-card__eyebrow">{project.eyebrow}</div><h3>{project.title}</h3></div></div><p>{project.description}</p><div className="project-card__footer"><div className="project-card__status">{project.status}</div><span className="project-card__beam" /></div></article>)}</div></Panel>
 }
 
 function TechnicalCube() {
@@ -117,11 +123,11 @@ function MiniChart() {
 }
 
 function RightRail() {
-  return <aside className="right-rail"><Panel className="beach-panel"><img src="/beach-horizon.svg" alt="Sunset coastline representing the human purpose behind intelligent systems" /><blockquote>“A more capable, curious, and creative future through intelligent systems.”</blockquote></Panel><Panel title="CURRENT BUILD" action={<><span className="online-dot" /> ONLINE</>}><div className="system-card"><div><span className="system-card__id">SYSTEM {currentAgent.id}</span><h3>{currentAgent.shortTitle}</h3><p>{currentAgent.summary}</p></div><div className="system-visual"><TechnicalCube /></div></div><div className="system-actions"><a className="button button--primary" href={currentAgent.repo} target="_blank" rel="noreferrer">VIEW PROJECT →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">LIVE DEMO</a></div></Panel><Panel title="NEXT BUILD" className="next-build"><div className="system-card"><div><span className="system-card__id">SYSTEM {nextAgent.id}</span><h3>{nextAgent.shortTitle}</h3><p>{nextAgent.summary}</p></div><div className="system-visual"><MiniChart /></div></div><div className="pill">IN DEVELOPMENT</div></Panel><Panel title="SYSTEM STATUS"><div className="status-list"><div className="status-meter"><span>Agents Deployed</span><strong>13 / 30</strong><em><i style={{ width: '43%' }} /></em></div><div><span>Project Systems</span><strong>4+</strong></div><div><span>Current Phase</span><strong>Decentralized Systems</strong></div><div><span>Next Milestone</span><strong>System 14</strong></div></div></Panel></aside>
+  return <aside className="right-rail"><Panel className="beach-panel"><img src="/beach-horizon.svg" alt="Sunset coastline representing the human purpose behind intelligent systems" /><blockquote>“A more capable, curious, and creative future through intelligent systems.”</blockquote></Panel><Panel title="◈ CURRENT BUILD" action={<><span className="online-dot" /> ONLINE</>}><div className="system-card"><div><span className="system-card__id">SYSTEM {currentAgent.id}</span><h3>{currentAgent.shortTitle}</h3><p>{currentAgent.summary}</p></div><div className="system-visual"><TechnicalCube /></div></div><div className="system-actions"><a className="button button--primary" href={currentAgent.repo} target="_blank" rel="noreferrer">VIEW PROJECT →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">LIVE DEMO</a></div></Panel><Panel title="⚙ NEXT BUILD" className="next-build"><div className="system-card"><div><span className="system-card__id">SYSTEM {nextAgent.id}</span><h3>{nextAgent.shortTitle}</h3><p>{nextAgent.summary}</p></div><div className="system-visual"><MiniChart /></div></div><div className="pill">IN DEVELOPMENT</div></Panel><Panel title="◇ SYSTEM STATUS" action={<><span className="online-dot" /> LIVE</>}><div className="status-list"><div className="status-meter"><span>Agents Deployed</span><strong>13 / 30</strong><em><i style={{ width: '43%' }} /></em></div><div className="status-meter status-meter--projects"><span>Project Systems</span><strong>4+</strong><em><i style={{ width: '68%' }} /></em></div><div><span>Current Phase</span><strong>Decentralized Systems</strong></div><div><span>Next Milestone</span><strong>System 14</strong></div><div className="status-signal"><span>Build Integrity</span><strong><b /> NOMINAL</strong></div></div></Panel></aside>
 }
 
 function TerminalPanel() {
-  return <Panel title="LAB TERMINAL" className="terminal-panel"><div className="terminal-grid"><pre>{`christopher@ai-lab:~$ help
+  return <section className="panel terminal-panel"><div className="terminal-tabs"><span className="active">⌘ LAB TERMINAL</span><span>SYSTEM LOGS</span><span>BUILD OUTPUT</span><b>✓</b></div><div className="terminal-grid"><pre>{`christopher@ai-lab:~$ help
 Available commands:
   agents    — Show all 30 agent systems
   projects  — View featured projects
@@ -132,11 +138,11 @@ Available commands:
   about     — Learn more about me
   github    — Visit GitHub profile
 
-christopher@ai-lab:~$ _`}</pre><div className="terminal-mark"><span>CM</span><strong>AI ENGINEERING LAB</strong><small>BUILD › EVALUATE › DEPLOY › IMPROVE</small></div></div></Panel>
+christopher@ai-lab:~$ _`}</pre><div className="terminal-mark"><span>CM</span><strong>AI ENGINEERING LAB</strong><small>BUILD › EVALUATE › DEPLOY › IMPROVE</small></div></div></section>
 }
 
 function HorizonPanel() {
-  return <Panel title="SYSTEM HORIZON" className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
+  return <Panel title="◇ SYSTEM HORIZON" className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div><button className="horizon-cta" type="button">EXPLORE THE NEXT FRONTIER →</button></div></Panel>
 }
 
 export default function App() {

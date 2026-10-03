@@ -1263,3 +1263,237 @@ body{
   .terminal-grid::before{display:none}
   .horizon-cta{display:none}
 }
+
+
+/* Agent network connectivity pass */
+@media (min-width:1201px){
+  .network__stage{
+    isolation:isolate;
+  }
+
+  /* Very subtle technical particle field */
+  .network__telemetry{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+  }
+
+  .network__telemetry::before{
+    content:"";
+    position:absolute;
+    inset:4%;
+    border-radius:50%;
+    background-image:
+      radial-gradient(circle,rgba(104,207,255,.34) 0 1px,transparent 1.5px),
+      radial-gradient(circle,rgba(119,139,255,.18) 0 1px,transparent 1.4px);
+    background-size:37px 37px,61px 61px;
+    background-position:8px 11px,27px 19px;
+    opacity:.16;
+    -webkit-mask-image:radial-gradient(circle at center,transparent 0 30%,#000 42%,#000 76%,transparent 92%);
+    mask-image:radial-gradient(circle at center,transparent 0 30%,#000 42%,#000 76%,transparent 92%);
+  }
+
+  /* Tick marks around the architecture without changing its geometry */
+  .network__telemetry-ring{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:446px;
+    height:446px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:
+      repeating-conic-gradient(
+        from -1deg,
+        rgba(94,196,255,.34) 0deg .55deg,
+        transparent .55deg 7.5deg
+      );
+    -webkit-mask:radial-gradient(circle,transparent 0 48.9%,#000 49.2% 50.3%,transparent 50.6%);
+    mask:radial-gradient(circle,transparent 0 48.9%,#000 49.2% 50.3%,transparent 50.6%);
+    opacity:.30;
+  }
+
+  .network__scan-arc{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:416px;
+    height:416px;
+    margin:-208px 0 0 -208px;
+    border-radius:50%;
+    border:1px solid transparent;
+    border-top-color:rgba(66,191,255,.28);
+    border-right-color:rgba(66,191,255,.09);
+    filter:drop-shadow(0 0 4px rgba(40,152,255,.12));
+  }
+
+  .network__scan-arc--one{
+    animation:networkSpin 28s linear infinite;
+  }
+
+  .network__scan-arc--two{
+    width:350px;
+    height:350px;
+    margin:-175px 0 0 -175px;
+    border-top-color:rgba(107,112,255,.20);
+    border-left-color:rgba(107,112,255,.08);
+    animation:networkSpinReverse 36s linear infinite;
+  }
+
+  /* Core-to-capability links live behind both reactor and nodes */
+  .network__links{
+    position:absolute;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
+  }
+
+  .network__link{
+    --link-length:184px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:1px;
+    height:var(--link-length);
+    color:inherit;
+    transform:
+      translate(-50%,-100%)
+      rotate(var(--angle));
+    transform-origin:50% 100%;
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb,currentColor 44%,transparent) 0%,
+        color-mix(in srgb,currentColor 18%,transparent) 42%,
+        rgba(46,145,220,.08) 100%
+      );
+    box-shadow:0 0 5px color-mix(in srgb,currentColor 18%,transparent);
+    opacity:.58;
+  }
+
+  .network__link::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:14px;
+    width:5px;
+    height:5px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    border:1px solid color-mix(in srgb,currentColor 52%,transparent);
+    background:#061321;
+    box-shadow:0 0 8px color-mix(in srgb,currentColor 30%,transparent);
+    opacity:.46;
+  }
+
+  .network__link i{
+    position:absolute;
+    left:50%;
+    bottom:42%;
+    width:5px;
+    height:5px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:currentColor;
+    box-shadow:
+      0 0 5px currentColor,
+      0 0 11px color-mix(in srgb,currentColor 76%,transparent);
+    opacity:0;
+    animation:dataPulse 4.9s ease-in-out infinite;
+    animation-delay:var(--pulse-delay);
+  }
+
+  /* Crisp secondary halos make each system feel engineered */
+  .network__cluster::before,
+  .network__cluster::after{
+    content:"";
+    position:absolute;
+    pointer-events:none;
+    border-radius:50%;
+  }
+
+  .network__cluster::before{
+    inset:-8px;
+    border:1px solid color-mix(in srgb,currentColor 38%,transparent);
+    box-shadow:
+      0 0 8px color-mix(in srgb,currentColor 16%,transparent),
+      inset 0 0 8px color-mix(in srgb,currentColor 10%,transparent);
+    opacity:.56;
+  }
+
+  .network__cluster::after{
+    inset:-14px;
+    border:1px dashed color-mix(in srgb,currentColor 18%,transparent);
+    opacity:.44;
+    animation:haloSpin 18s linear infinite;
+  }
+
+  .network__category:hover .network__cluster::before{
+    border-color:color-mix(in srgb,currentColor 64%,transparent);
+    opacity:.82;
+  }
+
+  .network__category:hover .network__cluster::after{
+    opacity:.68;
+  }
+
+  /* Give the central reactor a subtle engineering reticle */
+  .network__core{
+    outline:1px solid rgba(97,205,255,.09);
+    outline-offset:8px;
+  }
+
+  .network__core > strong::before,
+  .network__core > strong::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:18px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(151,229,255,.46));
+    opacity:.52;
+  }
+
+  .network__core > strong::before{
+    right:calc(100% + 11px);
+  }
+
+  .network__core > strong::after{
+    left:calc(100% + 11px);
+    transform:scaleX(-1);
+  }
+}
+
+@keyframes dataPulse{
+  0%,18%{
+    bottom:40%;
+    opacity:0;
+  }
+  28%{
+    opacity:.95;
+  }
+  76%{
+    bottom:91%;
+    opacity:.82;
+  }
+  88%,100%{
+    bottom:95%;
+    opacity:0;
+  }
+}
+
+@keyframes haloSpin{
+  to{transform:rotate(360deg)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .network__scan-arc,
+  .network__link i,
+  .network__cluster::after{
+    animation:none!important;
+  }
+  .network__link i{
+    display:none;
+  }
+}

@@ -40,11 +40,11 @@ export const currentAgent = agents.find((agent) => agent.id === 13)!
 export const nextAgent = agents.find((agent) => agent.id === 14)!
 
 export const recentBuilds = [
-  { id: 13, title: 'Fault-Tolerant Multi-Agent System' },
-  { id: 12, title: 'Role Coherence Monitor' },
-  { id: 11, title: 'Distributed Auction Allocation' },
-  { id: 10, title: 'Peer-to-Peer Coordination' },
-  { id: 9, title: 'Agentic Workflow System' },
+  { id: 13, title: 'Fault-Tolerant Multi-Agent System', date: 'Sep 26, 2026' },
+  { id: 12, title: 'Role Coherence Monitor', date: 'Sep 18, 2026' },
+  { id: 11, title: 'Distributed Auction Allocation', date: 'Sep 12, 2026' },
+  { id: 10, title: 'Peer-to-Peer Coordination', date: 'Sep 12, 2026' },
+  { id: 9, title: 'Agentic Workflow System', date: 'Sep 12, 2026' },
 ]
 
 export const projects = [

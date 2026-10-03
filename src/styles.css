@@ -1915,3 +1915,136 @@ body{
     animation:none!important;
   }
 }
+
+
+/* Final micro-detail pass */
+.panel{
+  position:relative;
+}
+
+.panel::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:10px;
+  width:10px;
+  height:10px;
+  border-left:1px solid rgba(95,196,255,.16);
+  border-top:1px solid rgba(95,196,255,.16);
+  pointer-events:none;
+  opacity:.72;
+}
+
+.panel__header{
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(13,48,76,.24),rgba(5,17,30,.04) 62%),
+    rgba(4,17,29,.18);
+}
+
+.panel__header::after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:-1px;
+  height:1px;
+  background:linear-gradient(90deg,rgba(44,200,255,.24),transparent 42%,rgba(44,200,255,.08));
+}
+
+.button{
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(114,207,255,.78);
+  box-shadow:0 0 16px rgba(26,138,255,.12);
+}
+
+.button--primary:hover{
+  box-shadow:
+    0 0 20px rgba(0,125,255,.54),
+    inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.project-card{
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+.project-card:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 0 28px rgba(25,104,185,.05),
+    0 12px 24px rgba(0,0,0,.22);
+}
+
+.build-row{
+  transition:background .16s ease;
+}
+
+.build-row:hover{
+  background:linear-gradient(90deg,rgba(14,60,94,.24),rgba(4,17,29,.02));
+}
+
+.status-list>div{
+  transition:background .16s ease;
+}
+
+.status-list>div:hover{
+  background:linear-gradient(90deg,rgba(12,48,78,.34),transparent 82%);
+}
+
+.terminal-tabs span{
+  transition:color .16s ease,background .16s ease;
+}
+
+.terminal-tabs span:not(.active):hover{
+  color:#b7dff2;
+  background:rgba(10,44,72,.20);
+}
+
+.beach-panel img,
+.horizon-image img{
+  transition:transform 8s ease-out,filter .6s ease;
+}
+
+.beach-panel:hover img,
+.horizon-panel:hover .horizon-image img{
+  transform:scale(1.035);
+}
+
+.beach-panel:hover img{
+  filter:saturate(1.30) contrast(1.10) brightness(.96);
+}
+
+.horizon-panel:hover .horizon-image img{
+  filter:saturate(1.34) contrast(1.12) brightness(.97);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .button,
+  .project-card,
+  .build-row,
+  .status-list>div,
+  .terminal-tabs span,
+  .beach-panel img,
+  .horizon-image img{
+    transition:none!important;
+  }
+
+  .button:hover,
+  .project-card:hover,
+  .beach-panel:hover img,
+  .horizon-panel:hover .horizon-image img{
+    transform:none!important;
+  }
+}

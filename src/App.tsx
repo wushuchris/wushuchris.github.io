@@ -45,6 +45,32 @@ function AgentNetwork() {
           <span />
         </div>
 
+        <div className="network__telemetry" aria-hidden="true">
+          <span className="network__telemetry-ring" />
+          <span className="network__scan-arc network__scan-arc--one" />
+          <span className="network__scan-arc network__scan-arc--two" />
+        </div>
+
+        <div className="network__links" aria-hidden="true">
+          {categories.map((category, index) => {
+            const angle = index * angleStep
+            const linkStyle = {
+              '--angle': `${angle}deg`,
+              '--pulse-delay': `${(-index * 0.42).toFixed(2)}s`,
+            } as CSSProperties
+
+            return (
+              <span
+                className={`network__link ${category.className}`}
+                key={`link-${category.name}`}
+                style={linkStyle}
+              >
+                <i />
+              </span>
+            )
+          })}
+        </div>
+
         <div className="network__core">
           <div className="network__orb" aria-hidden="true" />
           <strong>30 AGENTS</strong>

@@ -19,7 +19,7 @@ function Panel({ title, action, className = '', id, children }: PropsWithChildre
 }
 
 function Header() {
-  return <header className="topbar"><div className="brand"><span className="brand__mark">CM</span><span>CHRISTOPHER MENDOZA</span></div><nav aria-label="Primary navigation"><a className="active" href="#lab">LAB</a><a href="#agents">AGENTS</a><a href="#projects">PROJECTS</a><a href="#research">RESEARCH</a><a href="#about">ABOUT</a></nav><div className="command">⌕ Type a command… <kbd>⌘K</kbd></div></header>
+  return <header className="topbar"><div className="brand"><span className="brand__mark">CM</span><span>CHRISTOPHER MENDOZA</span></div><nav aria-label="Primary navigation"><a className="active" href="#lab">LAB</a><a href="#agents">AGENTS</a><a href="#projects">PROJECTS</a><a href="#research">RESEARCH</a><a href="#about">ABOUT</a></nav><div className="topbar__tools"><div className="command">⌕ Type a command… <kbd>⌘K</kbd></div><span className="lab-status"><i /> LAB ONLINE</span><a className="utility-link" href="https://github.com/wushuchris" target="_blank" rel="noreferrer" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.6 9.6 0 0 0-3 18.7c.48.09.66-.2.66-.46v-1.69c-2.68.58-3.24-1.14-3.24-1.14-.44-1.12-1.07-1.42-1.07-1.42-.87-.6.07-.59.07-.59.97.07 1.48.99 1.48.99.86 1.48 2.26 1.05 2.81.8.09-.63.34-1.05.61-1.29-2.14-.24-4.39-1.07-4.39-4.77 0-1.05.38-1.92.99-2.59-.1-.24-.43-1.22.1-2.55 0 0 .81-.26 2.64.99A9.2 9.2 0 0 1 12 7.23a9.2 9.2 0 0 1 2.41.32c1.83-1.25 2.64-.99 2.64-.99.53 1.33.2 2.31.1 2.55.62.67.99 1.54.99 2.59 0 3.71-2.26 4.53-4.41 4.77.35.3.65.88.65 1.78v2.64c0 .26.18.56.66.46A9.6 9.6 0 0 0 12 2.5Z"/></svg></a></div></header>
 }
 
 function Hero() {
@@ -126,7 +126,7 @@ function AgentNetwork() {
 }
 
 function RecentBuilds() {
-  return <Panel title="RECENT BUILDS" action="VIEW ALL →" className="recent-builds"><div className="build-list">{recentBuilds.map((build) => <div className="build-row" key={build.id}><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span></div>)}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
+  return <Panel title="RECENT BUILDS" action="VIEW ALL →" className="recent-builds"><div className="build-list">{recentBuilds.map((build) => <div className="build-row" key={build.id}><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span><time>{build.date}</time></div>)}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
 }
 
 function ProjectIcon({ index }: { index: number }) {

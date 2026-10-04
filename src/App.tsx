@@ -137,7 +137,7 @@ function ProjectIcon({ index }: { index: number }) {
 }
 
 function ProjectSystems() {
-  return <Panel title="PROJECT SYSTEMS" action="VIEW ALL →" className="projects-panel" id="projects"><div className="project-grid">{projects.map((project, index) => <article className={`project-card project-card--${project.accent}`} key={project.title} id={project.title === 'Research & Investments' ? 'research' : undefined}><div className="project-card__top"><span className="project-card__icon"><ProjectIcon index={index} /></span><div><div className="project-card__eyebrow">{project.eyebrow}</div><h3>{project.title}</h3></div></div><p>{project.description}</p><div className="project-card__footer"><div className="project-card__status">{project.status}</div><span className="project-card__beam" /></div></article>)}</div></Panel>
+  return <Panel title="PROJECT SYSTEMS" action="VIEW ALL →" className="projects-panel" id="projects"><div className="project-grid">{projects.map((project, index) => <article className={`project-card project-card--${project.accent}`} key={project.title} id={project.title === 'Research & Investments' ? 'research' : project.title === 'AI Robotics' ? 'robotics' : undefined}><div className="project-card__top"><span className="project-card__icon"><ProjectIcon index={index} /></span><div><div className="project-card__eyebrow">{project.eyebrow}</div><h3>{project.title}</h3></div></div><p>{project.description}</p><div className="project-card__footer"><div className="project-card__status">{project.status}</div><span className="project-card__beam" /></div></article>)}</div></Panel>
 }
 
 function TechnicalCube() {
@@ -168,7 +168,7 @@ christopher@ai-lab:~$ _`}</pre><div className="terminal-mark"><span>CM</span><st
 }
 
 function HorizonPanel() {
-  return <Panel title="◇ SYSTEM HORIZON" className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div><button className="horizon-cta" type="button">EXPLORE THE NEXT FRONTIER →</button></div></Panel>
+  return <Panel title="◇ SYSTEM HORIZON" action={<a className="horizon-header-cta" href="#robotics">EXPLORE THE NEXT FRONTIER →</a>} className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
 }
 
 export default function App() {

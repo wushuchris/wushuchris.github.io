@@ -57,7 +57,8 @@ function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void 
   )
 
   const run = (command: (typeof quickCommands)[number]) => {
-    navigateTo(command.target, command.external)
+    if (!command.target) return
+    navigateTo(command.target, Boolean(command.external))
     onClose()
   }
 

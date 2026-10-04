@@ -2307,7 +2307,7 @@ a:focus-visible{
 .outside-lab__item h3{
   margin:1px 0 4px;
   color:#d8eaf4;
-  font-size:.64rem;
+  font-size:.67rem;
   line-height:1.1;
   letter-spacing:.055em;
   text-transform:uppercase;
@@ -2316,7 +2316,7 @@ a:focus-visible{
 .outside-lab__item p{
   margin:0;
   color:#809bae;
-  font-size:.55rem;
+  font-size:.60rem;
   line-height:1.35;
 }
 
@@ -2348,11 +2348,11 @@ a:focus-visible{
   }
 
   .outside-lab__item h3{
-    font-size:.59rem;
+    font-size:.62rem;
   }
 
   .outside-lab__item p{
-    font-size:.51rem;
+    font-size:.55rem;
   }
 }
 

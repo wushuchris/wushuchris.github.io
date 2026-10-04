@@ -333,5 +333,12 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
 
+  useEffect(() => {
+    if (!commandOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previousOverflow }
+  }, [commandOpen])
+
   return <div className="app-shell" id="lab"><Header onOpenCommand={() => setCommandOpen(true)} /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /><OutsideLab /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main><CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} /></div>
 }

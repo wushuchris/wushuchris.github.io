@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import type { CSSProperties, PropsWithChildren, ReactNode } from 'react'
 import './styles.css'
 import { agents, currentAgent, nextAgent, projects, recentBuilds } from './data'
@@ -13,6 +14,83 @@ const categories = [
   { name: 'Multimodal + Physical', range: '24–26', className: 'node--red', icon: '◈' },
   { name: 'Safety + Intelligence', range: '27–30', className: 'node--purple', icon: '◇' },
 ]
+
+
+const quickCommands = [
+  { label: 'Agents', detail: 'Explore the 30-agent engineering system', target: '#agents' },
+  { label: 'Projects', detail: 'View featured project systems', target: '#projects' },
+  { label: 'Research & Investments', detail: 'Go to decision systems and research', target: '#research' },
+  { label: 'AI Robotics', detail: 'Explore the physical-intelligence frontier', target: '#robotics' },
+  { label: 'About Chris', detail: 'Return to the personal introduction', target: '#about' },
+  { label: 'Current Build', detail: 'Open System 13 on GitHub', target: currentAgent.repo, external: true },
+  { label: 'GitHub', detail: 'Open the full GitHub profile', target: 'https://github.com/wushuchris', external: true },
+  { label: 'LinkedIn', detail: 'Open Christopher Mendoza on LinkedIn', target: 'https://www.linkedin.com/in/christophermendoza', external: true },
+]
+
+function navigateTo(target: string, external = false) {
+  if (external) {
+    window.open(target, '_blank', 'noopener,noreferrer')
+    return
+  }
+
+  const element = document.querySelector(target)
+  if (!element) return
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  element.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
+}
+
+function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [query, setQuery] = useState('')
+
+  useEffect(() => {
+    if (!open) setQuery('')
+  }, [open])
+
+  if (!open) return null
+
+  const normalized = query.trim().toLowerCase()
+  const filtered = quickCommands.filter((command) =>
+    !normalized ||
+    command.label.toLowerCase().includes(normalized) ||
+    command.detail.toLowerCase().includes(normalized)
+  )
+
+  const run = (command: (typeof quickCommands)[number]) => {
+    navigateTo(command.target, command.external)
+    onClose()
+  }
+
+  return <div className="command-palette__backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
+    <section className="command-palette" role="dialog" aria-modal="true" aria-label="Lab command palette">
+      <div className="command-palette__search">
+        <span aria-hidden="true">⌕</span>
+        <input
+          autoFocus
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') onClose()
+            if (event.key === 'Enter' && filtered[0]) run(filtered[0])
+          }}
+          placeholder="Type a command…"
+          aria-label="Search commands"
+        />
+        <kbd>ESC</kbd>
+      </div>
+      <div className="command-palette__results">
+        {filtered.length ? filtered.map((command, index) =>
+          <button type="button" className="command-palette__item" key={command.label} onClick={() => run(command)}>
+            <span className="command-palette__index">{String(index + 1).padStart(2, '0')}</span>
+            <span><strong>{command.label}</strong><small>{command.detail}</small></span>
+            <b aria-hidden="true">↗</b>
+          </button>
+        ) : <div className="command-palette__empty">No matching lab command.</div>}
+      </div>
+      <footer><span>ENTER selects first result</span><span>⌘K toggles palette</span></footer>
+    </section>
+  </div>
+}
 
 function Panel({ title, action, className = '', id, children }: PropsWithChildren<{ title?: string; action?: ReactNode; className?: string; id?: string }>) {
   return <section className={`panel ${className}`} id={id}>{(title || action) && <div className="panel__header"><span>{title}</span>{action && <span className="panel__action">{action}</span>}</div>}{children}</section>
@@ -70,8 +148,8 @@ function HeaderAvatar() {
   </svg>
 }
 
-function Header() {
-  return <header className="topbar"><div className="brand"><span className="brand__mark"><HeaderAvatar /></span><span>CHRISTOPHER MENDOZA</span></div><nav aria-label="Primary navigation"><a className="active" href="#lab">LAB</a><a href="#agents">AGENTS</a><a href="#projects">PROJECTS</a><a href="#research">RESEARCH</a><a href="#about">ABOUT</a></nav><div className="topbar__tools"><div className="command">⌕ Type a command… <kbd>⌘K</kbd></div><span className="lab-status"><i /> LAB ONLINE</span><a className="utility-link" href="https://github.com/wushuchris" target="_blank" rel="noreferrer" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.6 9.6 0 0 0-3 18.7c.48.09.66-.2.66-.46v-1.69c-2.68.58-3.24-1.14-3.24-1.14-.44-1.12-1.07-1.42-1.07-1.42-.87-.6.07-.59.07-.59.97.07 1.48.99 1.48.99.86 1.48 2.26 1.05 2.81.8.09-.63.34-1.05.61-1.29-2.14-.24-4.39-1.07-4.39-4.77 0-1.05.38-1.92.99-2.59-.1-.24-.43-1.22.1-2.55 0 0 .81-.26 2.64.99A9.2 9.2 0 0 1 12 7.23a9.2 9.2 0 0 1 2.41.32c1.83-1.25 2.64-.99 2.64-.99.53 1.33.2 2.31.1 2.55.62.67.99 1.54.99 2.59 0 3.71-2.26 4.53-4.41 4.77.35.3.65.88.65 1.78v2.64c0 .26.18.56.66.46A9.6 9.6 0 0 0 12 2.5Z"/></svg></a><a className="utility-link" href="https://www.linkedin.com/in/christophermendoza" target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 8.2H2.8V21h3.4V8.2ZM4.5 3A2 2 0 1 0 4.5 7a2 2 0 0 0 0-4ZM21.2 13.7c0-3.9-2.1-5.7-4.9-5.7-2.3 0-3.3 1.3-3.9 2.1V8.2H9V21h3.4v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21h3.4l-.1-7.3Z"/></svg></a></div></header>
+function Header({ onOpenCommand }: { onOpenCommand: () => void }) {
+  return <header className="topbar"><div className="brand"><span className="brand__mark"><HeaderAvatar /></span><span>CHRISTOPHER MENDOZA</span></div><nav aria-label="Primary navigation"><a className="active" href="#lab">LAB</a><a href="#agents">AGENTS</a><a href="#projects">PROJECTS</a><a href="#research">RESEARCH</a><a href="#about">ABOUT</a></nav><div className="topbar__tools"><button className="command" type="button" onClick={onOpenCommand} aria-label="Open lab command palette"><span>⌕ Type a command…</span><kbd>⌘K</kbd></button><span className="lab-status"><i /> LAB ONLINE</span><a className="utility-link" href="https://github.com/wushuchris" target="_blank" rel="noreferrer" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.6 9.6 0 0 0-3 18.7c.48.09.66-.2.66-.46v-1.69c-2.68.58-3.24-1.14-3.24-1.14-.44-1.12-1.07-1.42-1.07-1.42-.87-.6.07-.59.07-.59.97.07 1.48.99 1.48.99.86 1.48 2.26 1.05 2.81.8.09-.63.34-1.05.61-1.29-2.14-.24-4.39-1.07-4.39-4.77 0-1.05.38-1.92.99-2.59-.1-.24-.43-1.22.1-2.55 0 0 .81-.26 2.64.99A9.2 9.2 0 0 1 12 7.23a9.2 9.2 0 0 1 2.41.32c1.83-1.25 2.64-.99 2.64-.99.53 1.33.2 2.31.1 2.55.62.67.99 1.54.99 2.59 0 3.71-2.26 4.53-4.41 4.77.35.3.65.88.65 1.78v2.64c0 .26.18.56.66.46A9.6 9.6 0 0 0 12 2.5Z"/></svg></a><a className="utility-link" href="https://www.linkedin.com/in/christophermendoza" target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 8.2H2.8V21h3.4V8.2ZM4.5 3A2 2 0 1 0 4.5 7a2 2 0 0 0 0-4ZM21.2 13.7c0-3.9-2.1-5.7-4.9-5.7-2.3 0-3.3 1.3-3.9 2.1V8.2H9V21h3.4v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21h3.4l-.1-7.3Z"/></svg></a></div></header>
 }
 
 function Hero() {
@@ -173,6 +251,10 @@ function AgentNetwork() {
           )
         })}
       </div>
+
+      <div className="network__mobile-legend" aria-label="Agent capability groups">
+        {categories.map((category) => <div className={`network__mobile-item ${category.className}`} key={`mobile-${category.name}`}><i aria-hidden="true" /><span><strong>{category.name}</strong><small>{category.range}</small></span></div>)}
+      </div>
     </section>
   )
 }
@@ -235,5 +317,21 @@ function HorizonPanel() {
 }
 
 export default function App() {
-  return <div className="app-shell" id="lab"><Header /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /><OutsideLab /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main></div>
+  const [commandOpen, setCommandOpen] = useState(false)
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        setCommandOpen((open) => !open)
+      } else if (event.key === 'Escape') {
+        setCommandOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
+  return <div className="app-shell" id="lab"><Header onOpenCommand={() => setCommandOpen(true)} /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /><OutsideLab /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main><CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} /></div>
 }

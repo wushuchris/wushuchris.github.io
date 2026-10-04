@@ -119,6 +119,23 @@
       <path d="M908 239h42" stroke-width=".8"/>
     </g>
 
+    <g opacity=".42">
+      <path d="M560 239 C628 226 696 230 758 239 S880 253 948 247 S1092 226 1200 215" fill="none" stroke="#0a2235" stroke-width="8"/>
+      <path d="M612 245 C684 236 742 240 806 248 S926 258 1002 251 S1120 237 1200 232" fill="none" stroke="#173248" stroke-width="3"/>
+    </g>
+
+    <g fill="#ffd997" opacity=".30" filter="url(#glow)">
+      <ellipse cx="756" cy="268" rx="2.3" ry="8"/>
+      <ellipse cx="815" cy="270" rx="2.1" ry="7"/>
+      <ellipse cx="875" cy="274" rx="2.4" ry="9"/>
+      <ellipse cx="941" cy="276" rx="2.3" ry="10"/>
+      <ellipse cx="1003" cy="276" rx="2.1" ry="8"/>
+      <ellipse cx="1062" cy="272" rx="2.2" ry="7"/>
+    </g>
+
+    <path d="M906 214 C921 243 925 282 928 319" fill="none" stroke="#fff3c7" stroke-width="3" opacity=".18"/>
+    <path d="M919 222 C927 252 930 286 932 324" fill="none" stroke="#ffd88a" stroke-width="1.4" opacity=".22"/>
+
     <rect width="1200" height="420" fill="url(#vignette)"/>
     <rect width="1200" height="420" fill="#ff9d66" opacity=".035"/>
   </g>

@@ -21,22 +21,52 @@ function Panel({ title, action, className = '', id, children }: PropsWithChildre
 function HeaderAvatar() {
   return <svg className="brand__avatar" viewBox="0 0 36 36" aria-hidden="true">
     <defs>
-      <linearGradient id="avatarGlow" x1="0" y1="0" x2="1" y2="1">
-        <stop stopColor="#8ee8ff" />
-        <stop offset="1" stopColor="#45a8ff" />
+      <radialGradient id="avatarBg" cx=".5" cy=".28" r=".8">
+        <stop offset="0" stopColor="#18354b" />
+        <stop offset="1" stopColor="#081521" />
+      </radialGradient>
+      <linearGradient id="skin" x1=".22" y1=".08" x2=".82" y2=".92">
+        <stop offset="0" stopColor="#f1c7a4" />
+        <stop offset=".48" stopColor="#dca27d" />
+        <stop offset="1" stopColor="#b97958" />
+      </linearGradient>
+      <linearGradient id="skinLight" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stopColor="#ffe0bf" stopOpacity=".82" />
+        <stop offset="1" stopColor="#d28f6d" stopOpacity=".08" />
+      </linearGradient>
+      <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stopColor="#314c62" />
+        <stop offset="1" stopColor="#142838" />
       </linearGradient>
     </defs>
-    <circle cx="18" cy="18" r="17" fill="rgba(7,24,39,.92)" stroke="rgba(142,232,255,.30)" />
-    <path d="M10.2 18.4c0-6 3.1-10.2 7.8-10.2s7.8 4.2 7.8 10.2v2.8c0 5.2-3.2 8.8-7.8 8.8s-7.8-3.6-7.8-8.8v-2.8Z" fill="rgba(214,233,241,.10)" stroke="url(#avatarGlow)" strokeWidth="1.2" />
-    <path d="M10.9 16.2c.9-4.4 3.2-6.6 7.1-6.6 3.8 0 6.2 2.2 7.1 6.6" fill="none" stroke="rgba(191,232,246,.38)" strokeWidth=".9" />
-    <rect x="11.7" y="16.1" width="5.1" height="3.8" rx="1.6" fill="rgba(3,12,23,.92)" stroke="#8ee8ff" strokeWidth="1" />
-    <rect x="19.2" y="16.1" width="5.1" height="3.8" rx="1.6" fill="rgba(3,12,23,.92)" stroke="#8ee8ff" strokeWidth="1" />
-    <path d="M16.8 17.9h2.4" stroke="#8ee8ff" strokeWidth=".9" />
-    <path d="M13.4 18.1h1.3M21.3 18.1h1.3" stroke="#d7f6ff" strokeWidth=".7" strokeLinecap="round" />
-    <path d="M17.9 19.9v2.1" stroke="rgba(215,246,255,.54)" strokeWidth=".7" strokeLinecap="round" />
-    <path d="M15.5 24.1c1.5 1 3.5 1 5 0" fill="none" stroke="rgba(215,246,255,.74)" strokeWidth=".8" strokeLinecap="round" />
-    <path d="M11.1 15.9l-1.4-.6M24.9 15.9l1.4-.6" stroke="rgba(142,232,255,.35)" strokeWidth=".7" strokeLinecap="round" />
-    <path d="M12.2 27.4c1.7 2 3.6 3 5.8 3s4.1-1 5.8-3" fill="none" stroke="rgba(69,168,255,.32)" strokeWidth=".7" />
+
+    <circle cx="18" cy="18" r="17" fill="url(#avatarBg)" stroke="rgba(126,205,235,.34)" />
+
+    <path d="M8.7 34c.8-4.6 4.2-7.2 9.3-7.2s8.5 2.6 9.3 7.2Z" fill="url(#shirt)" />
+    <path d="M14.8 27.4c.7 1.1 1.8 1.8 3.2 1.8s2.5-.7 3.2-1.8v3.2c-.9.7-2 1.1-3.2 1.1s-2.3-.4-3.2-1.1Z" fill="#bd7c5c" />
+
+    <ellipse cx="9.9" cy="19.4" rx="1.5" ry="2.4" fill="#c98967" />
+    <ellipse cx="26.1" cy="19.4" rx="1.5" ry="2.4" fill="#c98967" />
+
+    <path d="M10.5 17.1c0-5.3 3-9 7.5-9s7.5 3.7 7.5 9v3.7c0 5-3.1 8.4-7.5 8.4s-7.5-3.4-7.5-8.4Z" fill="url(#skin)" />
+    <path d="M12.1 13.4c1.2-2.7 3.1-4.1 5.9-4.1 2.9 0 4.9 1.5 6 4.4-1.8-1.7-3.8-2.5-6.1-2.5-2.2 0-4.1.7-5.8 2.2Z" fill="url(#skinLight)" opacity=".68" />
+
+    <path d="M12.6 15.8c1.2-.7 2.5-.9 3.8-.4M19.7 15.4c1.3-.5 2.6-.3 3.8.4" fill="none" stroke="#5d3b31" strokeWidth=".72" strokeLinecap="round" />
+
+    <rect x="11.4" y="16.5" width="5.5" height="3.8" rx="1.45" fill="rgba(21,29,34,.76)" stroke="#222c31" strokeWidth="1.05" />
+    <rect x="19.1" y="16.5" width="5.5" height="3.8" rx="1.45" fill="rgba(21,29,34,.76)" stroke="#222c31" strokeWidth="1.05" />
+    <path d="M16.9 18.1h2.2M11.4 17.8 10.2 17.4M24.6 17.8l1.2-.4" fill="none" stroke="#222c31" strokeWidth=".8" strokeLinecap="round" />
+    <path d="M12.4 17.4h3.3M20.3 17.4h3.3" stroke="#d8eef5" strokeWidth=".55" strokeLinecap="round" opacity=".52" />
+
+    <ellipse cx="14.2" cy="18.4" rx=".62" ry=".45" fill="#34261f" />
+    <ellipse cx="21.8" cy="18.4" rx=".62" ry=".45" fill="#34261f" />
+
+    <path d="M17.7 19.7c-.1 1.2-.3 2.2-.7 3 .5.3 1.1.4 1.8.2" fill="none" stroke="#9d634d" strokeWidth=".7" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M14.9 24.2c.9.8 1.9 1.2 3.1 1.2 1.3 0 2.4-.4 3.2-1.2" fill="none" stroke="#7d4339" strokeWidth=".8" strokeLinecap="round" />
+    <path d="M16.1 25c1.2.4 2.5.4 3.7 0" fill="none" stroke="#f0b09c" strokeWidth=".45" strokeLinecap="round" opacity=".72" />
+
+    <path d="M11.9 21.2c.5 1.6 1.1 2.8 1.9 3.8M24.1 21.2c-.5 1.6-1.1 2.8-1.9 3.8" fill="none" stroke="#b87357" strokeWidth=".48" opacity=".48" />
+    <path d="M13.3 11c1.3-1.3 2.8-2 4.7-2s3.5.7 4.8 2" fill="none" stroke="#f7d1ad" strokeWidth=".55" strokeLinecap="round" opacity=".55" />
   </svg>
 }
 

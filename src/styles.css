@@ -2410,3 +2410,19 @@ a:focus-visible{
     height:36px;
   }
 }
+
+
+/* Lifelike avatar finish */
+.brand__mark{
+  border-color:rgba(146,196,220,.34);
+  background:
+    radial-gradient(circle at 50% 28%,rgba(64,117,150,.18),transparent 58%),
+    rgba(5,16,28,.90);
+  box-shadow:
+    inset 0 0 11px rgba(69,127,158,.05),
+    0 0 8px rgba(31,99,144,.04);
+}
+
+.brand__avatar{
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.28));
+}

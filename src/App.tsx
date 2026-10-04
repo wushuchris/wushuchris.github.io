@@ -129,6 +129,17 @@ function RecentBuilds() {
   return <Panel title="RECENT BUILDS" action="VIEW ALL →" className="recent-builds"><div className="build-list">{recentBuilds.map((build) => <div className="build-row" key={build.id}><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span><time>{build.date}</time></div>)}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
 }
 
+function OutsideLab() {
+  const interests = [
+    { icon: '△', title: 'Hiking', text: 'Open trails, quiet miles, and room to reset.' },
+    { icon: '♞', title: 'Chess', text: 'Patience, pattern recognition, and thinking a few moves ahead.' },
+    { icon: '◌', title: 'Learning', text: 'Following ideas across technology, markets, science, and history.' },
+    { icon: '↗', title: 'Exploring', text: 'New places, new systems, and the occasional rabbit hole.' },
+  ]
+
+  return <Panel title="OUTSIDE THE LAB" className="outside-lab"><p className="outside-lab__intro">Some of my best thinking happens away from a screen.</p><div className="outside-lab__grid">{interests.map((interest) => <article className="outside-lab__item" key={interest.title}><span className="outside-lab__icon" aria-hidden="true">{interest.icon}</span><div><h3>{interest.title}</h3><p>{interest.text}</p></div></article>)}</div></Panel>
+}
+
 function ProjectIcon({ index }: { index: number }) {
   if (index === 0) return <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="8" r="4"/><circle cx="8" cy="24" r="4"/><circle cx="28" cy="24" r="4"/><path d="M18 12v8M14 21l-4 1M22 21l4 1"/></svg>
   if (index === 1) return <span className="project-card__f1">F1</span>
@@ -172,5 +183,5 @@ function HorizonPanel() {
 }
 
 export default function App() {
-  return <div className="app-shell" id="lab"><Header /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main></div>
+  return <div className="app-shell" id="lab"><Header /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /><OutsideLab /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main></div>
 }

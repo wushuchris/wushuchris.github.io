@@ -3136,3 +3136,54 @@ a:focus-visible{
 
 @media (prefers-reduced-motion:reduce){
 }
+
+
+/* Scroll-aware navigation */
+nav a{
+  position:relative;
+  transition:color .18s ease,border-color .18s ease,text-shadow .18s ease;
+}
+
+nav a.active{
+  color:#e7f8ff;
+  border-bottom-color:var(--cyan);
+  text-shadow:0 0 12px rgba(34,214,255,.28);
+}
+
+nav a.active::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:4px;
+  width:18px;
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,#35dcff,transparent);
+  box-shadow:0 0 8px rgba(53,220,255,.35);
+}
+
+#agents,
+#projects,
+#research,
+#about,
+#robotics,
+#terminal{
+  scroll-margin-top:76px;
+}
+
+@media (max-width:1200px){
+  #agents,
+  #projects,
+  #research,
+  #about,
+  #robotics,
+  #terminal{
+    scroll-margin-top:108px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  nav a{
+    transition:none!important;
+  }
+}

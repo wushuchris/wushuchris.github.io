@@ -3187,3 +3187,122 @@ nav a.active::after{
     transition:none!important;
   }
 }
+
+
+/* Interaction consistency pass */
+.panel-action-link{
+  color:inherit;
+  text-decoration:none;
+  border-radius:5px;
+  transition:color .18s ease,text-shadow .18s ease;
+}
+
+.panel-action-link:hover,
+.panel-action-link:focus-visible{
+  color:#8eeaff;
+  text-shadow:0 0 10px rgba(50,214,255,.32);
+  outline:none;
+}
+
+.build-row--link{
+  color:inherit;
+  text-decoration:none;
+  border-radius:6px;
+  margin:0 -5px;
+  padding:0 5px;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+
+.build-row--link:hover,
+.build-row--link:focus-visible{
+  background:linear-gradient(90deg,rgba(14,72,108,.34),rgba(7,29,45,.12));
+  transform:translateX(2px);
+  outline:none;
+}
+
+.build-row--link .build-title{
+  transition:color .18s ease;
+}
+
+.build-row--link:hover .build-title,
+.build-row--link:focus-visible .build-title{
+  color:#eaf9ff;
+}
+
+.project-card--link{
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.project-card--link:hover,
+.project-card--link:focus-visible{
+  transform:translateY(-2px);
+  outline:none;
+  border-color:currentColor;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.045),
+    inset 0 0 24px rgba(18,104,181,.055),
+    0 12px 26px rgba(0,0,0,.22),
+    0 0 18px color-mix(in srgb,currentColor 16%,transparent);
+}
+
+.project-card__footer{
+  align-items:center;
+}
+
+.project-card__action{
+  margin-left:auto;
+  padding-left:8px;
+  color:color-mix(in srgb,currentColor 72%,#d9f5ff);
+  font-size:.49rem;
+  letter-spacing:.08em;
+  opacity:.62;
+  transition:opacity .18s ease,transform .18s ease;
+}
+
+.project-card--link:hover .project-card__action,
+.project-card--link:focus-visible .project-card__action{
+  opacity:1;
+  transform:translateX(2px);
+}
+
+#system-horizon{
+  scroll-margin-top:76px;
+}
+
+@media (max-width:1200px){
+  #system-horizon{
+    scroll-margin-top:108px;
+  }
+}
+
+@media (max-width:640px){
+  .build-row--link{
+    margin:0 -3px;
+    padding:0 3px;
+  }
+
+  .project-card__action{
+    font-size:.47rem;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .panel-action-link,
+  .build-row--link,
+  .build-row--link .build-title,
+  .project-card--link,
+  .project-card__action{
+    transition:none!important;
+  }
+
+  .build-row--link:hover,
+  .build-row--link:focus-visible,
+  .project-card--link:hover,
+  .project-card--link:focus-visible,
+  .project-card--link:hover .project-card__action,
+  .project-card--link:focus-visible .project-card__action{
+    transform:none!important;
+  }
+}

@@ -150,12 +150,20 @@ function HeaderAvatar() {
   </svg>
 }
 
-function Header({ onOpenCommand }: { onOpenCommand: () => void }) {
-  return <header className="topbar"><div className="brand"><span className="brand__mark"><HeaderAvatar /></span><span>CHRISTOPHER MENDOZA</span></div><nav aria-label="Primary navigation"><a className="active" href="#lab">LAB</a><a href="#agents">AGENTS</a><a href="#projects">PROJECTS</a><a href="#research">RESEARCH</a><a href="#about">ABOUT</a></nav><div className="topbar__tools"><button className="command" type="button" onClick={onOpenCommand} aria-label="Open lab command palette"><span>⌕ Type a command…</span><kbd>⌘K</kbd></button><span className="lab-status"><i /> LAB ONLINE</span><a className="utility-link" href="https://github.com/wushuchris" target="_blank" rel="noreferrer" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.6 9.6 0 0 0-3 18.7c.48.09.66-.2.66-.46v-1.69c-2.68.58-3.24-1.14-3.24-1.14-.44-1.12-1.07-1.42-1.07-1.42-.87-.6.07-.59.07-.59.97.07 1.48.99 1.48.99.86 1.48 2.26 1.05 2.81.8.09-.63.34-1.05.61-1.29-2.14-.24-4.39-1.07-4.39-4.77 0-1.05.38-1.92.99-2.59-.1-.24-.43-1.22.1-2.55 0 0 .81-.26 2.64.99A9.2 9.2 0 0 1 12 7.23a9.2 9.2 0 0 1 2.41.32c1.83-1.25 2.64-.99 2.64-.99.53 1.33.2 2.31.1 2.55.62.67.99 1.54.99 2.59 0 3.71-2.26 4.53-4.41 4.77.35.3.65.88.65 1.78v2.64c0 .26.18.56.66.46A9.6 9.6 0 0 0 12 2.5Z"/></svg></a><a className="utility-link" href="https://www.linkedin.com/in/christophermendoza" target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 8.2H2.8V21h3.4V8.2ZM4.5 3A2 2 0 1 0 4.5 7a2 2 0 0 0 0-4ZM21.2 13.7c0-3.9-2.1-5.7-4.9-5.7-2.3 0-3.3 1.3-3.9 2.1V8.2H9V21h3.4v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21h3.4l-.1-7.3Z"/></svg></a></div></header>
+function Header({ activeSection, onSelectSection, onOpenCommand }: { activeSection: string; onSelectSection: (section: string) => void; onOpenCommand: () => void }) {
+  const navItems = [
+    { id: 'lab', label: 'LAB' },
+    { id: 'agents', label: 'AGENTS' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'research', label: 'RESEARCH' },
+    { id: 'about', label: 'ABOUT' },
+  ]
+
+  return <header className="topbar"><div className="brand"><span className="brand__mark"><HeaderAvatar /></span><span>CHRISTOPHER MENDOZA</span></div><nav aria-label="Primary navigation">{navItems.map((item) => <a className={activeSection === item.id ? 'active' : undefined} href={`#${item.id}`} key={item.id} onClick={() => onSelectSection(item.id)} aria-current={activeSection === item.id ? 'page' : undefined}>{item.label}</a>)}</nav><div className="topbar__tools"><button className="command" type="button" onClick={onOpenCommand} aria-label="Open lab command palette"><span>⌕ Type a command…</span><kbd>⌘K</kbd></button><span className="lab-status"><i /> LAB ONLINE</span><a className="utility-link" href="https://github.com/wushuchris" target="_blank" rel="noreferrer" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.6 9.6 0 0 0-3 18.7c.48.09.66-.2.66-.46v-1.69c-2.68.58-3.24-1.14-3.24-1.14-.44-1.12-1.07-1.42-1.07-1.42-.87-.6.07-.59.07-.59.97.07 1.48.99 1.48.99.86 1.48 2.26 1.05 2.81.8.09-.63.34-1.05.61-1.29-2.14-.24-4.39-1.07-4.39-4.77 0-1.05.38-1.92.99-2.59-.1-.24-.43-1.22.1-2.55 0 0 .81-.26 2.64.99A9.2 9.2 0 0 1 12 7.23a9.2 9.2 0 0 1 2.41.32c1.83-1.25 2.64-.99 2.64-.99.53 1.33.2 2.31.1 2.55.62.67.99 1.54.99 2.59 0 3.71-2.26 4.53-4.41 4.77.35.3.65.88.65 1.78v2.64c0 .26.18.56.66.46A9.6 9.6 0 0 0 12 2.5Z"/></svg></a><a className="utility-link" href="https://www.linkedin.com/in/christophermendoza" target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 8.2H2.8V21h3.4V8.2ZM4.5 3A2 2 0 1 0 4.5 7a2 2 0 0 0 0-4ZM21.2 13.7c0-3.9-2.1-5.7-4.9-5.7-2.3 0-3.3 1.3-3.9 2.1V8.2H9V21h3.4v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21h3.4l-.1-7.3Z"/></svg></a></div></header>
 }
 
 function Hero() {
-  return <section className="hero panel" id="about"><div className="eyebrow">AI ENGINEERING LAB v1.0</div><h1>CHRISTOPHER<br />MENDOZA</h1><div className="hero__roles">AI ENGINEER <span>×</span> INVESTOR <span>×</span> BUILDER</div><p>Building intelligent systems from research → architecture → evaluation → deployment.</p><div className="hero__actions"><a className="button button--primary" href="#agents">ENTER THE LAB →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">WATCH DEMO</a></div><div className="hero__stats"><div><strong>13 / 30</strong><span>AGENTS ONLINE</span></div><div><strong>4+</strong><span>PROJECT SYSTEMS</span></div><div><strong>∞</strong><span>IDEAS</span></div><div><strong>↗</strong><span>ACTIVELY BUILDING</span></div></div></section>
+  return <section className="hero panel"><div className="eyebrow">AI ENGINEERING LAB v1.0</div><h1>CHRISTOPHER<br />MENDOZA</h1><div className="hero__roles">AI ENGINEER <span>×</span> INVESTOR <span>×</span> BUILDER</div><p>Building intelligent systems from research → architecture → evaluation → deployment.</p><div className="hero__actions"><a className="button button--primary" href="#agents">ENTER THE LAB →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">WATCH DEMO</a></div><div className="hero__stats"><div><strong>13 / 30</strong><span>AGENTS ONLINE</span></div><div><strong>4+</strong><span>PROJECT SYSTEMS</span></div><div><strong>∞</strong><span>IDEAS</span></div><div><strong>↗</strong><span>ACTIVELY BUILDING</span></div></div></section>
 }
 
 function AgentNetwork() {
@@ -273,7 +281,7 @@ function OutsideLab() {
     { icon: '↗', title: 'Exploring', text: 'New places, new systems, and the occasional rabbit hole.' },
   ]
 
-  return <Panel title="OUTSIDE THE LAB" className="outside-lab"><p className="outside-lab__intro">Some of my best thinking happens away from a screen.</p><div className="outside-lab__grid">{interests.map((interest) => <article className="outside-lab__item" key={interest.title}><span className="outside-lab__icon" aria-hidden="true">{interest.icon}</span><div><h3>{interest.title}</h3><p>{interest.text}</p></div></article>)}</div></Panel>
+  return <Panel title="OUTSIDE THE LAB" className="outside-lab" id="about"><p className="outside-lab__intro">Some of my best thinking happens away from a screen.</p><div className="outside-lab__grid">{interests.map((interest) => <article className="outside-lab__item" key={interest.title}><span className="outside-lab__icon" aria-hidden="true">{interest.icon}</span><div><h3>{interest.title}</h3><p>{interest.text}</p></div></article>)}</div></Panel>
 }
 
 function ProjectIcon({ index }: { index: number }) {
@@ -465,6 +473,7 @@ function HorizonPanel() {
 
 export default function App() {
   const [commandOpen, setCommandOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('lab')
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -487,5 +496,62 @@ export default function App() {
     return () => { document.body.style.overflow = previousOverflow }
   }, [commandOpen])
 
-  return <div className="app-shell" id="lab"><Header onOpenCommand={() => setCommandOpen(true)} /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /><OutsideLab /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main><CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} /></div>
+  useEffect(() => {
+    const sectionIds = ['agents', 'projects', 'research', 'about']
+    let frame = 0
+
+    const updateActiveSection = () => {
+      frame = 0
+
+      if (window.scrollY < 36) {
+        setActiveSection('lab')
+        return
+      }
+
+      const headerHeight = document.querySelector('.topbar')?.getBoundingClientRect().height ?? 58
+      const probeY = headerHeight + Math.min(84, window.innerHeight * 0.14)
+
+      const sections = sectionIds
+        .map((id) => {
+          const element = document.getElementById(id)
+          if (!element) return null
+          return { id, rect: element.getBoundingClientRect() }
+        })
+        .filter((section): section is { id: string; rect: DOMRect } => section !== null)
+
+      const crossing = sections
+        .filter(({ rect }) => rect.top <= probeY && rect.bottom >= probeY)
+        .sort((a, b) => b.rect.top - a.rect.top)
+
+      if (crossing[0]) {
+        setActiveSection(crossing[0].id)
+        return
+      }
+
+      const upcoming = sections
+        .filter(({ rect }) => rect.top > probeY)
+        .sort((a, b) => a.rect.top - b.rect.top)
+
+      if (upcoming[0] && upcoming[0].rect.top - probeY < window.innerHeight * 0.22) {
+        setActiveSection(upcoming[0].id)
+      }
+    }
+
+    const scheduleUpdate = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(updateActiveSection)
+    }
+
+    updateActiveSection()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [])
+
+  return <div className="app-shell" id="lab"><Header activeSection={activeSection} onSelectSection={setActiveSection} onOpenCommand={() => setCommandOpen(true)} /><main className="dashboard"><div className="left-column"><Hero /><RecentBuilds /><OutsideLab /></div><div className="center-column"><AgentNetwork /><ProjectSystems /></div><RightRail /><div className="bottom-left"><TerminalPanel /></div><div className="bottom-right"><HorizonPanel /></div></main><CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} /></div>
 }

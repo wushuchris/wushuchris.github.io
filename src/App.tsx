@@ -270,9 +270,12 @@ function AgentNetwork() {
 }
 
 function RecentBuilds() {
-  return <Panel title="RECENT BUILDS" action="VIEW ALL →" className="recent-builds"><div className="build-list">{recentBuilds.map((build) => <div className="build-row" key={build.id}><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span><time>{build.date}</time></div>)}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
+  return <Panel title="RECENT BUILDS" action={<a className="panel-action-link" href="#agents">VIEW ALL →</a>} className="recent-builds"><div className="build-list">{recentBuilds.map((build) => {
+    const agent = agents.find((item) => item.id === build.id)
+    const content = <><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span><time>{build.date}</time></>
+    return agent?.repo ? <a className="build-row build-row--link" href={agent.repo} target="_blank" rel="noreferrer" key={build.id} aria-label={`Open System ${build.id}: ${build.title} on GitHub`}>{content}</a> : <div className="build-row" key={build.id}>{content}</div>
+  })}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
 }
-
 function OutsideLab() {
   const interests = [
     { icon: '△', title: 'Hiking', text: 'Open trails, quiet miles, and room to reset.' },
@@ -292,9 +295,15 @@ function ProjectIcon({ index }: { index: number }) {
 }
 
 function ProjectSystems() {
-  return <Panel title="PROJECT SYSTEMS" action="VIEW ALL →" className="projects-panel" id="projects"><div className="project-grid">{projects.map((project, index) => <article className={`project-card project-card--${project.accent}`} key={project.title} id={project.title === 'Research & Investments' ? 'research' : project.title === 'AI Robotics' ? 'robotics' : undefined}><div className="project-card__top"><span className="project-card__icon"><ProjectIcon index={index} /></span><div><div className="project-card__eyebrow">{project.eyebrow}</div><h3>{project.title}</h3></div></div><p>{project.description}</p><div className="project-card__footer"><div className="project-card__status">{project.status}</div><span className="project-card__beam" /></div></article>)}</div></Panel>
-}
+  return <Panel title="PROJECT SYSTEMS" action={<a className="panel-action-link" href="https://github.com/wushuchris" target="_blank" rel="noreferrer">VIEW ALL →</a>} className="projects-panel" id="projects"><div className="project-grid">{projects.map((project, index) => {
+    const card = <><div className="project-card__top"><span className="project-card__icon"><ProjectIcon index={index} /></span><div><div className="project-card__eyebrow">{project.eyebrow}</div><h3>{project.title}</h3></div></div><p>{project.description}</p><div className="project-card__footer"><div className="project-card__status">{project.status}</div>{'href' in project && <span className="project-card__action" aria-hidden="true">OPEN ↗</span>}<span className="project-card__beam" /></div></>
+    const id = project.title === 'Research & Investments' ? 'research' : project.title === 'AI Robotics' ? 'robotics' : undefined
 
+    return 'href' in project
+      ? <a className={`project-card project-card--${project.accent} project-card--link`} href={project.href} target={project.external ? '_blank' : undefined} rel={project.external ? 'noreferrer' : undefined} key={project.title} id={id}>{card}</a>
+      : <article className={`project-card project-card--${project.accent}`} key={project.title} id={id}>{card}</article>
+  })}</div></Panel>
+}
 function TechnicalCube() {
   return <svg className="tech-graphic tech-cube" viewBox="0 0 132 98" aria-hidden="true"><defs><linearGradient id="cubeFill" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#0a5cff" stopOpacity=".10"/><stop offset=".55" stopColor="#17a8ff" stopOpacity=".28"/><stop offset="1" stopColor="#47efff" stopOpacity=".52"/></linearGradient><radialGradient id="corePulse" cx=".5" cy=".45" r=".6"><stop offset="0" stopColor="#c4f7ff"/><stop offset=".18" stopColor="#4bdfff"/><stop offset=".55" stopColor="#147eff" stopOpacity=".64"/><stop offset="1" stopColor="#147eff" stopOpacity="0"/></radialGradient><filter id="cubeGlow"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g opacity=".38" stroke="#1e73ad" strokeWidth=".65"><path d="M8 18H124M8 34H124M8 50H124M8 66H124M8 82H124"/><path d="M20 8V90M44 8V90M68 8V90M92 8V90M116 8V90"/></g><g stroke="#29baff" strokeWidth="1.5" fill="url(#cubeFill)" filter="url(#cubeGlow)"><path d="M66 10 84 20 66 30 48 20Z"/><path d="M48 20v20l18 10V30Z"/><path d="M84 20v20L66 50V30Z"/><path d="M26 42 44 52 26 62 8 52Z"/><path d="M8 52v18l18 10V62Z"/><path d="M44 52v18L26 80V62Z"/><path d="M106 42 124 52 106 62 88 52Z"/><path d="M88 52v18l18 10V62Z"/><path d="M124 52v18l-18 10V62Z"/><path d="M66 50 84 60 66 70 48 60Z"/><path d="M48 60v18l18 10V70Z"/><path d="M84 60v18L66 88V70Z"/></g><g stroke="#6ce8ff" strokeWidth="1" opacity=".62"><path d="M48 40 26 42M84 40l22 2M44 52l22-2 22 2M66 30v20"/></g><circle cx="66" cy="50" r="16" fill="url(#corePulse)" opacity=".72"/><g fill="#9df2ff"><circle cx="66" cy="10" r="1.8"/><circle cx="26" cy="42" r="1.8"/><circle cx="106" cy="42" r="1.8"/><circle cx="66" cy="88" r="1.8"/></g><g fontFamily="Arial, Helvetica, sans-serif" fontSize="6.5" fontWeight="700" fill="#8fcae8"><text x="7" y="14">TRUST</text><text x="94" y="14">RECOVER</text><text x="50" y="96">CONSENSUS</text></g></svg>
 }
@@ -468,7 +477,7 @@ function TerminalPanel() {
 }
 
 function HorizonPanel() {
-  return <Panel title="◇ SYSTEM HORIZON" action={<a className="horizon-header-cta" href="#robotics">EXPLORE THE NEXT FRONTIER →</a>} className="horizon-panel"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
+  return <Panel title="◇ SYSTEM HORIZON" action={<a className="horizon-header-cta" href="#robotics">EXPLORE THE NEXT FRONTIER →</a>} className="horizon-panel" id="system-horizon"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
 }
 
 export default function App() {

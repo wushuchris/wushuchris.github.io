@@ -324,6 +324,13 @@ function TerminalPanel() {
   ])
   const [value, setValue] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const outputRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const output = outputRef.current
+    if (!output) return
+    output.scrollTop = output.scrollHeight
+  }, [entries])
 
   const write = (entry: TerminalEntry) => {
     setEntries((current) => [...current, entry])
@@ -426,7 +433,7 @@ function TerminalPanel() {
     <div className="terminal-tabs"><span className="active">⌘ LAB TERMINAL</span><span>SYSTEM LOGS</span><span>BUILD OUTPUT</span><b>✓</b></div>
     <div className="terminal-grid">
       <div className="terminal-console" onClick={() => inputRef.current?.focus()}>
-        <div className="terminal-output" aria-live="polite">
+        <div className="terminal-output" ref={outputRef} aria-live="polite">
           {entries.map((entry, index) => <div className={`terminal-entry terminal-entry--${entry.tone ?? 'default'}`} key={index}>
             {entry.command && <div className="terminal-command"><span>christopher@ai-lab:~$</span> {entry.command}</div>}
             {entry.output?.map((line, lineIndex) => <div className="terminal-line" key={lineIndex}>{line || '\u00a0'}</div>)}

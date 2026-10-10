@@ -48,8 +48,8 @@ export const recentBuilds = [
 ]
 
 export const projects = [
-  { title: '30 Agents for AI Engineers', status: '13 / 30', eyebrow: 'FLAGSHIP SYSTEM', description: 'From bounded single-agent behavior toward resilient, coordinated intelligent systems.', accent: 'cyan' },
-  { title: 'F1 IoT Strategy Advisor', status: 'DEPLOYED', eyebrow: 'REAL-TIME AI', description: 'Real-time racing strategy using IoT telemetry and AI-assisted decision support.', accent: 'red' },
-  { title: 'AI Robotics', status: 'NEXT FRONTIER', eyebrow: 'PHYSICAL INTELLIGENCE', description: 'Bridging software intelligence and the physical world through embodied systems.', accent: 'purple' },
+  { title: '30 Agents for AI Engineers', status: '13 / 30', eyebrow: 'FLAGSHIP SYSTEM', description: 'From bounded single-agent behavior toward resilient, coordinated intelligent systems.', accent: 'cyan', href: '#agents', external: false },
+  { title: 'F1 IoT Strategy Advisor', status: 'DEPLOYED', eyebrow: 'REAL-TIME AI', description: 'Real-time racing strategy using IoT telemetry and AI-assisted decision support.', accent: 'red', href: 'https://github.com/wushuchris/f1-ai-strategy-advisor', external: true },
+  { title: 'AI Robotics', status: 'NEXT FRONTIER', eyebrow: 'PHYSICAL INTELLIGENCE', description: 'Bridging software intelligence and the physical world through embodied systems.', accent: 'purple', href: '#system-horizon', external: false },
   { title: 'Research & Investments', status: 'ONGOING', eyebrow: 'DECISION SYSTEMS', description: 'AI-assisted research, investment analysis, markets, and technology-driven decision support.', accent: 'amber' },
 ] as const

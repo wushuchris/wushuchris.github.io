@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, PropsWithChildren, ReactNode } from 'react'
 import './styles.css'
 import { agents, currentAgent, nextAgent, projects, recentBuilds } from './data'
@@ -22,6 +22,7 @@ const quickCommands = [
   { label: 'Research & Investments', detail: 'Go to decision systems and research', target: '#research' },
   { label: 'AI Robotics', detail: 'Explore the physical-intelligence frontier', target: '#robotics' },
   { label: 'About Chris', detail: 'Return to the personal introduction', target: '#about' },
+  { label: 'Lab Terminal', detail: 'Open the interactive command terminal', target: '#terminal' },
   { label: 'Current Build', detail: 'Open System 13 on GitHub', target: currentAgent.repo, external: true },
   { label: 'GitHub', detail: 'Open the full GitHub profile', target: 'https://github.com/wushuchris', external: true },
   { label: 'LinkedIn', detail: 'Open Christopher Mendoza on LinkedIn', target: 'https://www.linkedin.com/in/christophermendoza', external: true },
@@ -298,19 +299,157 @@ function RightRail() {
   return <aside className="right-rail"><Panel className="beach-panel"><img src="/beach-horizon.svg" alt="Sunset coastline representing the human purpose behind intelligent systems" /><blockquote>“A more capable, curious, and creative future through intelligent systems.”</blockquote></Panel><Panel title="◈ CURRENT BUILD" action={<><span className="online-dot" /> ONLINE</>}><div className="system-card"><div><span className="system-card__id">SYSTEM {currentAgent.id}</span><h3>{currentAgent.shortTitle}</h3><p>{currentAgent.summary}</p><div className="system-tags"><span>FAULT TOLERANCE</span><span>MULTI-AGENT</span></div></div><div className="system-visual"><TechnicalCube /></div></div><div className="system-actions"><a className="button button--primary" href={currentAgent.repo} target="_blank" rel="noreferrer">VIEW PROJECT →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">LIVE DEMO</a></div></Panel><Panel title="⚙ NEXT BUILD" className="next-build"><div className="system-card"><div><span className="system-card__id">SYSTEM {nextAgent.id}</span><h3>{nextAgent.shortTitle}</h3><p>{nextAgent.summary}</p><div className="system-tags system-tags--amber"><span>ANALYSIS</span><span>VISUALIZATION</span></div></div><div className="system-visual"><MiniChart /></div></div><div className="pill">IN DEVELOPMENT</div></Panel><Panel title="◇ SYSTEM STATUS" action={<><span className="online-dot" /> LIVE</>}><div className="status-list"><div className="status-meter"><span>Agents Deployed</span><strong>13 / 30</strong><em><i style={{ width: '43%' }} /></em></div><div className="status-meter status-meter--projects"><span>Project Systems</span><strong>4+</strong><em><i style={{ width: '68%' }} /></em></div><div><span>Current Phase</span><strong>Decentralized Systems</strong></div><div><span>Next Milestone</span><strong>System 14</strong></div><div><span>Runtime</span><strong>GitHub Pages</strong></div><div><span>CI/CD</span><strong>GitHub Actions</strong></div><div className="status-signal"><span>Latest Deploy</span><strong><b /> SUCCESS</strong></div></div></Panel></aside>
 }
 
-function TerminalPanel() {
-  return <section className="panel terminal-panel"><div className="terminal-tabs"><span className="active">⌘ LAB TERMINAL</span><span>SYSTEM LOGS</span><span>BUILD OUTPUT</span><b>✓</b></div><div className="terminal-grid"><pre>{`christopher@ai-lab:~$ help
-Available commands:
-  agents    — Show all 30 agent systems
-  projects  — View featured projects
-  status    — Show current build status
-  open <n>  — Open agent system
-  robotics  — Explore physical intelligence
-  research  — Research & investments
-  about     — Learn more about me
-  github    — Visit GitHub profile
+type TerminalEntry = {
+  command?: string
+  output?: string[]
+  tone?: 'default' | 'success' | 'warning'
+}
 
-christopher@ai-lab:~$ _`}</pre><div className="terminal-mark"><span>CM</span><strong>AI ENGINEERING LAB</strong><small>BUILD › EVALUATE › DEPLOY › IMPROVE</small></div></div></section>
+const terminalHelp = [
+  'Available commands:',
+  '  agents    — Show the 30-agent engineering system',
+  '  projects  — View featured project systems',
+  '  status    — Show current build status',
+  '  open <n>  — Inspect an agent system',
+  '  robotics  — Explore physical intelligence',
+  '  research  — Research & investments',
+  '  about     — Learn more about me',
+  '  github    — Visit GitHub profile',
+  '  clear     — Clear terminal history',
+]
+
+function TerminalPanel() {
+  const [entries, setEntries] = useState<TerminalEntry[]>([
+    { output: ['LAB TERMINAL READY', 'Type help for available commands.'], tone: 'success' },
+  ])
+  const [value, setValue] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const write = (entry: TerminalEntry) => {
+    setEntries((current) => [...current, entry])
+  }
+
+  const execute = (rawCommand: string) => {
+    const trimmed = rawCommand.trim()
+    if (!trimmed) return
+
+    const [command, argument] = trimmed.toLowerCase().split(/\s+/, 2)
+
+    if (command === 'clear') {
+      setEntries([])
+      setValue('')
+      return
+    }
+
+    const baseEntry: TerminalEntry = { command: trimmed }
+
+    switch (command) {
+      case 'help':
+        write({ ...baseEntry, output: terminalHelp })
+        break
+      case 'agents':
+        write({ ...baseEntry, output: ['30 Agents for AI Engineers', '13 systems online · System 14 next · 30 planned total'], tone: 'success' })
+        navigateTo('#agents')
+        break
+      case 'projects':
+        write({ ...baseEntry, output: projects.map((project) => `${project.title} — ${project.status}`) })
+        navigateTo('#projects')
+        break
+      case 'status':
+        write({
+          ...baseEntry,
+          output: [
+            'Agents Deployed: 13 / 30',
+            'Project Systems: 4+',
+            'Current Phase: Decentralized Systems',
+            'Next Milestone: System 14 — Data Analysis Agent',
+            'Runtime: GitHub Pages',
+            'CI/CD: GitHub Actions',
+          ],
+          tone: 'success',
+        })
+        break
+      case 'robotics':
+        write({ ...baseEntry, output: ['AI Robotics — NEXT FRONTIER', 'Bridging software intelligence and the physical world through embodied systems.'] })
+        navigateTo('#robotics')
+        break
+      case 'research':
+        write({ ...baseEntry, output: ['Research & Investments — ONGOING', 'AI-assisted research, investment analysis, markets, and technology-driven decision support.'] })
+        navigateTo('#research')
+        break
+      case 'about':
+        write({ ...baseEntry, output: ['Christopher Mendoza — AI Engineer × Investor × Builder'] })
+        navigateTo('#about')
+        break
+      case 'github':
+        write({ ...baseEntry, output: ['Opening GitHub profile…'], tone: 'success' })
+        navigateTo('https://github.com/wushuchris', true)
+        break
+      case 'open': {
+        if (!argument || !/^\d+$/.test(argument)) {
+          write({ ...baseEntry, output: ['Usage: open <1-30>'], tone: 'warning' })
+          break
+        }
+
+        const id = Number(argument)
+        const agent = agents.find((item) => item.id === id)
+
+        if (!agent) {
+          write({ ...baseEntry, output: [`Agent ${id} is outside the current 1–30 system.`], tone: 'warning' })
+          break
+        }
+
+        const state = agent.status === 'online' ? 'ONLINE' : agent.status === 'next' ? 'NEXT' : 'PLANNED'
+        write({
+          ...baseEntry,
+          output: [
+            `SYSTEM ${String(agent.id).padStart(2, '0')} — ${agent.title}`,
+            `Status: ${state} · Capability: ${agent.category}`,
+            agent.summary,
+            agent.repo ? 'Opening connected project repository…' : 'No direct project link is connected from this dashboard yet.',
+          ],
+          tone: agent.status === 'online' ? 'success' : 'default',
+        })
+
+        if (agent.repo) navigateTo(agent.repo, true)
+        else navigateTo('#agents')
+        break
+      }
+      default:
+        write({ ...baseEntry, output: [`Command not found: ${command}`, 'Type help to see available commands.'], tone: 'warning' })
+    }
+
+    setValue('')
+  }
+
+  return <section className="panel terminal-panel" id="terminal">
+    <div className="terminal-tabs"><span className="active">⌘ LAB TERMINAL</span><span>SYSTEM LOGS</span><span>BUILD OUTPUT</span><b>✓</b></div>
+    <div className="terminal-grid">
+      <div className="terminal-console" onClick={() => inputRef.current?.focus()}>
+        <div className="terminal-output" aria-live="polite">
+          {entries.map((entry, index) => <div className={`terminal-entry terminal-entry--${entry.tone ?? 'default'}`} key={index}>
+            {entry.command && <div className="terminal-command"><span>christopher@ai-lab:~$</span> {entry.command}</div>}
+            {entry.output?.map((line, lineIndex) => <div className="terminal-line" key={lineIndex}>{line || '\u00a0'}</div>)}
+          </div>)}
+        </div>
+        <form className="terminal-prompt" onSubmit={(event) => { event.preventDefault(); execute(value) }}>
+          <label htmlFor="lab-terminal-input">christopher@ai-lab:~$</label>
+          <input
+            ref={inputRef}
+            id="lab-terminal-input"
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            autoComplete="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            aria-label="Lab terminal command"
+          />
+          <span className="terminal-cursor" aria-hidden="true" />
+        </form>
+      </div>
+      <div className="terminal-mark"><span>CM</span><strong>AI ENGINEERING LAB</strong><small>BUILD › EVALUATE › DEPLOY › IMPROVE</small></div>
+    </div>
+  </section>
 }
 
 function HorizonPanel() {

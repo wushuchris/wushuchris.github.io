@@ -163,7 +163,7 @@ function Header({ activeSection, onSelectSection, onOpenCommand }: { activeSecti
 }
 
 function Hero() {
-  return <section className="hero panel"><div className="eyebrow">AI ENGINEERING LAB v1.0</div><h1>CHRISTOPHER<br />MENDOZA</h1><div className="hero__roles">AI ENGINEER <span>×</span> INVESTOR <span>×</span> BUILDER</div><p>Building intelligent systems from research → architecture → evaluation → deployment.</p><div className="hero__actions"><a className="button button--primary" href="#agents">ENTER THE LAB →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">WATCH DEMO</a></div><div className="hero__stats"><div><strong>{agentProgress}</strong><span>AGENTS ONLINE</span></div><div><strong>{projectCount}</strong><span>PROJECT SYSTEMS</span></div><div><strong>∞</strong><span>IDEAS</span></div><div><strong>↗</strong><span>ACTIVELY BUILDING</span></div></div></section>
+  return <section className="hero panel"><div className="eyebrow">AI ENGINEERING LAB v1.0</div><h1>CHRISTOPHER<br />MENDOZA</h1><div className="hero__roles">AI ENGINEER <span>×</span> INVESTOR <span>×</span> BUILDER</div><p>Building intelligent systems from research → architecture → evaluation → deployment.</p><div className="hero__stats"><div><strong>{agentProgress}</strong><span>AGENTS ONLINE</span></div><div><strong>{projectCount}</strong><span>PROJECT SYSTEMS</span></div><div><strong>∞</strong><span>IDEAS</span></div><div><strong>↗</strong><span>ACTIVELY BUILDING</span></div></div></section>
 }
 
 function AgentNetwork() {

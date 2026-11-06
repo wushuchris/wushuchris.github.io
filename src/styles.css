@@ -3383,6 +3383,9 @@ nav a.active::after{
       margin:0;
     }
     .network__category .network__label{
+      position:absolute;
+      margin:0;
+      display:flex;
       left:50%;
       right:auto;
       top:calc(100% + 8px);
@@ -3398,6 +3401,10 @@ nav a.active::after{
       font-size:.49rem;
     }
     .network__core{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
       width:clamp(170px,calc(100cqw - 300px),214px);
       height:146px;
       border-radius:50%;

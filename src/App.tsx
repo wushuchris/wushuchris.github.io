@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, PropsWithChildren, ReactNode } from 'react'
 import './styles.css'
-import { agents, currentAgent, nextAgent, projects, recentBuilds } from './data'
+import { agents, agentProgress, completedCount, currentAgent, currentPhase, nextAgent, projectCount, projects, progressPercent, recentBuilds, totalAgents } from './data'
 
 const categories = [
   { name: 'Foundations', range: '01–03', className: 'node--green', icon: '◫' },
@@ -23,7 +23,7 @@ const quickCommands = [
   { label: 'AI Robotics', detail: 'Explore the physical-intelligence frontier', target: '#robotics' },
   { label: 'About Chris', detail: 'Return to the personal introduction', target: '#about' },
   { label: 'Lab Terminal', detail: 'Open the interactive command terminal', target: '#terminal' },
-  { label: 'Current Build', detail: 'Open System 13 on GitHub', target: currentAgent.repo, external: true },
+  { label: 'Current Build', detail: `Open System ${currentAgent.id} on GitHub`, target: currentAgent.repo, external: true },
   { label: 'GitHub', detail: 'Open the full GitHub profile', target: 'https://github.com/wushuchris', external: true },
   { label: 'LinkedIn', detail: 'Open Christopher Mendoza on LinkedIn', target: 'https://www.linkedin.com/in/christophermendoza', external: true },
 ]
@@ -163,17 +163,22 @@ function Header({ activeSection, onSelectSection, onOpenCommand }: { activeSecti
 }
 
 function Hero() {
-  return <section className="hero panel"><div className="eyebrow">AI ENGINEERING LAB v1.0</div><h1>CHRISTOPHER<br />MENDOZA</h1><div className="hero__roles">AI ENGINEER <span>×</span> INVESTOR <span>×</span> BUILDER</div><p>Building intelligent systems from research → architecture → evaluation → deployment.</p><div className="hero__actions"><a className="button button--primary" href="#agents">ENTER THE LAB →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">WATCH DEMO</a></div><div className="hero__stats"><div><strong>13 / 30</strong><span>AGENTS ONLINE</span></div><div><strong>4+</strong><span>PROJECT SYSTEMS</span></div><div><strong>∞</strong><span>IDEAS</span></div><div><strong>↗</strong><span>ACTIVELY BUILDING</span></div></div></section>
+  return <section className="hero panel"><div className="eyebrow">AI ENGINEERING LAB v1.0</div><h1>CHRISTOPHER<br />MENDOZA</h1><div className="hero__roles">AI ENGINEER <span>×</span> INVESTOR <span>×</span> BUILDER</div><p>Building intelligent systems from research → architecture → evaluation → deployment.</p><div className="hero__actions"><a className="button button--primary" href="#agents">ENTER THE LAB →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">WATCH DEMO</a></div><div className="hero__stats"><div><strong>{agentProgress}</strong><span>AGENTS ONLINE</span></div><div><strong>{projectCount}</strong><span>PROJECT SYSTEMS</span></div><div><strong>∞</strong><span>IDEAS</span></div><div><strong>↗</strong><span>ACTIVELY BUILDING</span></div></div></section>
 }
 
 function AgentNetwork() {
+  const categoryStatus = (category: string) => [currentAgent, nextAgent]
+    .filter((agent) => agent.category === category)
+    .map((agent) => `${agent.id} ${agent.status === 'online' ? 'ONLINE' : 'NEXT'}`)
+    .join(' · ')
+
   const orbitRadius = 184
   const angleStep = 360 / categories.length
 
   return (
     <section className="network panel" id="agents">
       <div className="network__intro">
-        <strong>30 AGENTS</strong>
+        <strong>{totalAgents} AGENTS</strong>
         <span>FOR AI ENGINEERS</span>
         <small>A COMPLETE SYSTEM FOR BUILDING WHAT&apos;S NEXT</small>
       </div>
@@ -213,9 +218,9 @@ function AgentNetwork() {
 
         <div className="network__core">
           <div className="network__orb" aria-hidden="true" />
-          <strong>30 AGENTS</strong>
+          <strong>{totalAgents} AGENTS</strong>
           <span>FOR AI ENGINEERS</span>
-          <small>13 ONLINE</small>
+          <small>{completedCount} ONLINE</small>
         </div>
 
         {categories.map((category, index) => {
@@ -255,7 +260,7 @@ function AgentNetwork() {
 
               <div className="network__label">
                 <strong>{category.name}</strong>
-                <span>{category.range}</span>
+                <span>{category.range}</span>{category.name === nextAgent.category && <span>{categoryStatus(category.name)}</span>}
               </div>
             </div>
           )
@@ -263,7 +268,7 @@ function AgentNetwork() {
       </div>
 
       <div className="network__mobile-legend" aria-label="Agent capability groups">
-        {categories.map((category) => <div className={`network__mobile-item ${category.className}`} key={`mobile-${category.name}`}><i aria-hidden="true" /><span><strong>{category.name}</strong><small>{category.range}</small></span></div>)}
+        {categories.map((category) => <div className={`network__mobile-item ${category.className}`} key={`mobile-${category.name}`}><i aria-hidden="true" /><span><strong>{category.name}</strong><small>{category.range}{category.name === nextAgent.category && ` · ${categoryStatus(category.name)}`}</small></span></div>)}
       </div>
     </section>
   )
@@ -271,10 +276,10 @@ function AgentNetwork() {
 
 function RecentBuilds() {
   return <Panel title="RECENT BUILDS" action={<a className="panel-action-link" href="#agents">VIEW ALL →</a>} className="recent-builds"><div className="build-list">{recentBuilds.map((build) => {
-    const agent = agents.find((item) => item.id === build.id)
-    const content = <><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span><time>{build.date}</time></>
+    const agent = build
+    const content = <><span className="build-id">{String(build.id).padStart(2, '0')}</span><span className="build-title">{build.title}</span><span className="online-dot" /><span className="online-text">ONLINE</span><time dateTime={build.completedOn}>{build.date}</time></>
     return agent?.repo ? <a className="build-row build-row--link" href={agent.repo} target="_blank" rel="noreferrer" key={build.id} aria-label={`Open System ${build.id}: ${build.title} on GitHub`}>{content}</a> : <div className="build-row" key={build.id}>{content}</div>
-  })}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>13</strong></div><div><span>PROJECT TRACKS</span><strong>4+</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
+  })}</div><div className="recent-metrics"><div><span>LIVE SYSTEMS</span><strong>{completedCount}</strong></div><div><span>PROJECT TRACKS</span><strong>{projectCount}</strong></div><div className="recent-activity"><span>BUILD ACTIVITY</span><div className="build-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div></div></Panel>
 }
 function OutsideLab() {
   const interests = [
@@ -305,7 +310,7 @@ function ProjectSystems() {
   })}</div></Panel>
 }
 function TechnicalCube() {
-  return <svg className="tech-graphic tech-cube" viewBox="0 0 132 98" aria-hidden="true"><defs><linearGradient id="cubeFill" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#0a5cff" stopOpacity=".10"/><stop offset=".55" stopColor="#17a8ff" stopOpacity=".28"/><stop offset="1" stopColor="#47efff" stopOpacity=".52"/></linearGradient><radialGradient id="corePulse" cx=".5" cy=".45" r=".6"><stop offset="0" stopColor="#c4f7ff"/><stop offset=".18" stopColor="#4bdfff"/><stop offset=".55" stopColor="#147eff" stopOpacity=".64"/><stop offset="1" stopColor="#147eff" stopOpacity="0"/></radialGradient><filter id="cubeGlow"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g opacity=".38" stroke="#1e73ad" strokeWidth=".65"><path d="M8 18H124M8 34H124M8 50H124M8 66H124M8 82H124"/><path d="M20 8V90M44 8V90M68 8V90M92 8V90M116 8V90"/></g><g stroke="#29baff" strokeWidth="1.5" fill="url(#cubeFill)" filter="url(#cubeGlow)"><path d="M66 10 84 20 66 30 48 20Z"/><path d="M48 20v20l18 10V30Z"/><path d="M84 20v20L66 50V30Z"/><path d="M26 42 44 52 26 62 8 52Z"/><path d="M8 52v18l18 10V62Z"/><path d="M44 52v18L26 80V62Z"/><path d="M106 42 124 52 106 62 88 52Z"/><path d="M88 52v18l18 10V62Z"/><path d="M124 52v18l-18 10V62Z"/><path d="M66 50 84 60 66 70 48 60Z"/><path d="M48 60v18l18 10V70Z"/><path d="M84 60v18L66 88V70Z"/></g><g stroke="#6ce8ff" strokeWidth="1" opacity=".62"><path d="M48 40 26 42M84 40l22 2M44 52l22-2 22 2M66 30v20"/></g><circle cx="66" cy="50" r="16" fill="url(#corePulse)" opacity=".72"/><g fill="#9df2ff"><circle cx="66" cy="10" r="1.8"/><circle cx="26" cy="42" r="1.8"/><circle cx="106" cy="42" r="1.8"/><circle cx="66" cy="88" r="1.8"/></g><g fontFamily="Arial, Helvetica, sans-serif" fontSize="6.5" fontWeight="700" fill="#8fcae8"><text x="7" y="14">TRUST</text><text x="94" y="14">RECOVER</text><text x="50" y="96">CONSENSUS</text></g></svg>
+  return <svg className="tech-graphic tech-cube" viewBox="0 0 132 98" aria-hidden="true"><defs><linearGradient id="cubeFill" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#0a5cff" stopOpacity=".10"/><stop offset=".55" stopColor="#17a8ff" stopOpacity=".28"/><stop offset="1" stopColor="#47efff" stopOpacity=".52"/></linearGradient><radialGradient id="corePulse" cx=".5" cy=".45" r=".6"><stop offset="0" stopColor="#c4f7ff"/><stop offset=".18" stopColor="#4bdfff"/><stop offset=".55" stopColor="#147eff" stopOpacity=".64"/><stop offset="1" stopColor="#147eff" stopOpacity="0"/></radialGradient><filter id="cubeGlow"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g opacity=".38" stroke="#1e73ad" strokeWidth=".65"><path d="M8 18H124M8 34H124M8 50H124M8 66H124M8 82H124"/><path d="M20 8V90M44 8V90M68 8V90M92 8V90M116 8V90"/></g><g stroke="#29baff" strokeWidth="1.5" fill="url(#cubeFill)" filter="url(#cubeGlow)"><path d="M66 10 84 20 66 30 48 20Z"/><path d="M48 20v20l18 10V30Z"/><path d="M84 20v20L66 50V30Z"/><path d="M26 42 44 52 26 62 8 52Z"/><path d="M8 52v18l18 10V62Z"/><path d="M44 52v18L26 80V62Z"/><path d="M106 42 124 52 106 62 88 52Z"/><path d="M88 52v18l18 10V62Z"/><path d="M124 52v18l-18 10V62Z"/><path d="M66 50 84 60 66 70 48 60Z"/><path d="M48 60v18l18 10V70Z"/><path d="M84 60v18L66 88V70Z"/></g><g stroke="#6ce8ff" strokeWidth="1" opacity=".62"><path d="M48 40 26 42M84 40l22 2M44 52l22-2 22 2M66 30v20"/></g><circle cx="66" cy="50" r="16" fill="url(#corePulse)" opacity=".72"/><g fill="#9df2ff"><circle cx="66" cy="10" r="1.8"/><circle cx="26" cy="42" r="1.8"/><circle cx="106" cy="42" r="1.8"/><circle cx="66" cy="88" r="1.8"/></g><g fontFamily="Arial, Helvetica, sans-serif" fontSize="6.5" fontWeight="700" fill="#8fcae8"><text x="7" y="14">REASON</text><text x="94" y="14">REFINE</text><text x="50" y="96">CONSTRAINTS</text></g></svg>
 }
 
 function MiniChart() {
@@ -313,7 +318,7 @@ function MiniChart() {
 }
 
 function RightRail() {
-  return <aside className="right-rail"><Panel className="beach-panel"><img src="/beach-horizon.svg" alt="Sunset coastline representing the human purpose behind intelligent systems" /><blockquote>“A more capable, curious, and creative future through intelligent systems.”</blockquote></Panel><Panel title="◈ CURRENT BUILD" action={<><span className="online-dot" /> ONLINE</>}><div className="system-card"><div><span className="system-card__id">SYSTEM {currentAgent.id}</span><h3>{currentAgent.shortTitle}</h3><p>{currentAgent.summary}</p><div className="system-tags"><span>FAULT TOLERANCE</span><span>MULTI-AGENT</span></div></div><div className="system-visual"><TechnicalCube /></div></div><div className="system-actions"><a className="button button--primary" href={currentAgent.repo} target="_blank" rel="noreferrer">VIEW PROJECT →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">LIVE DEMO</a></div></Panel><Panel title="⚙ NEXT BUILD" className="next-build"><div className="system-card"><div><span className="system-card__id">SYSTEM {nextAgent.id}</span><h3>{nextAgent.shortTitle}</h3><p>{nextAgent.summary}</p><div className="system-tags system-tags--amber"><span>ANALYSIS</span><span>VISUALIZATION</span></div></div><div className="system-visual"><MiniChart /></div></div><div className="pill">IN DEVELOPMENT</div></Panel><Panel title="◇ SYSTEM STATUS" action={<><span className="online-dot" /> LIVE</>}><div className="status-list"><div className="status-meter"><span>Agents Deployed</span><strong>13 / 30</strong><em><i style={{ width: '43%' }} /></em></div><div className="status-meter status-meter--projects"><span>Project Systems</span><strong>4+</strong><em><i style={{ width: '68%' }} /></em></div><div><span>Current Phase</span><strong>Decentralized Systems</strong></div><div><span>Next Milestone</span><strong>System 14</strong></div><div><span>Runtime</span><strong>GitHub Pages</strong></div><div><span>CI/CD</span><strong>GitHub Actions</strong></div><div className="status-signal"><span>Latest Deploy</span><strong><b /> SUCCESS</strong></div></div></Panel></aside>
+  return <aside className="right-rail"><Panel className="beach-panel"><img src="/beach-horizon.svg" alt="Sunset coastline representing the human purpose behind intelligent systems" /><blockquote>“A more capable, curious, and creative future through intelligent systems.”</blockquote></Panel><Panel title="◈ CURRENT BUILD" action={<><span className="online-dot" /> ONLINE</>}><div className="system-card"><div><span className="system-card__id">SYSTEM {currentAgent.id}</span><h3>{currentAgent.shortTitle}</h3><p>{currentAgent.summary}</p><div className="system-tags">{currentAgent.tags?.map((tag) => <span key={tag}>{tag}</span>)}</div></div><div className="system-visual">{currentAgent.visual === 'analysis' ? <MiniChart /> : <TechnicalCube />}</div></div><div className="system-actions"><a className="button button--primary" href={currentAgent.repo} target="_blank" rel="noreferrer">VIEW PROJECT →</a><a className="button" href={currentAgent.demo} target="_blank" rel="noreferrer">LIVE DEMO</a></div></Panel><Panel title="⚙ NEXT BUILD" className="next-build"><div className="system-card"><div><span className="system-card__id">SYSTEM {nextAgent.id}</span><h3>{nextAgent.shortTitle}</h3><p>{nextAgent.summary}</p><div className="system-tags system-tags--amber">{nextAgent.tags?.map((tag) => <span key={tag}>{tag}</span>)}</div></div><div className="system-visual">{nextAgent.visual === 'analysis' ? <MiniChart /> : <TechnicalCube />}</div></div><div className="pill">IN DEVELOPMENT</div></Panel><Panel title="◇ SYSTEM STATUS" action={<><span className="online-dot" /> LIVE</>}><div className="status-list"><div className="status-meter"><span>Agents Deployed · {progressPercent}%</span><strong>{agentProgress}</strong><em><i style={{ width: `${progressPercent}%` }} /></em></div><div className="status-meter status-meter--projects"><span>Project Systems</span><strong>{projectCount}</strong><em><i style={{ width: '68%' }} /></em></div><div><span>Current Phase</span><strong>{currentPhase}</strong></div><div><span>Next Milestone</span><strong>System {nextAgent.id}</strong></div><div><span>Runtime</span><strong>GitHub Pages</strong></div><div><span>CI/CD</span><strong>GitHub Actions</strong></div><div className="status-signal"><span>Latest Deploy</span><strong><b /> SUCCESS</strong></div></div></Panel></aside>
 }
 
 type TerminalEntry = {
@@ -372,7 +377,7 @@ function TerminalPanel() {
         write({ ...baseEntry, output: terminalHelp })
         break
       case 'agents':
-        write({ ...baseEntry, output: ['30 Agents for AI Engineers', '13 systems online · System 14 next · 30 planned total'], tone: 'success' })
+        write({ ...baseEntry, output: ['30 Agents for AI Engineers', `${completedCount} systems online · System ${nextAgent.id} next · ${totalAgents} planned total`], tone: 'success' })
         navigateTo('#agents')
         break
       case 'projects':
@@ -383,10 +388,10 @@ function TerminalPanel() {
         write({
           ...baseEntry,
           output: [
-            'Agents Deployed: 13 / 30',
-            'Project Systems: 4+',
-            'Current Phase: Decentralized Systems',
-            'Next Milestone: System 14 — Data Analysis Agent',
+            `Agents Deployed: ${agentProgress} (${progressPercent}%)`,
+            `Project Systems: ${projectCount}`,
+            `Current Phase: ${currentPhase}`,
+            `Next Milestone: System ${nextAgent.id} — ${nextAgent.shortTitle}`,
             'Runtime: GitHub Pages',
             'CI/CD: GitHub Actions',
           ],
@@ -411,7 +416,7 @@ function TerminalPanel() {
         break
       case 'open': {
         if (!argument || !/^\d+$/.test(argument)) {
-          write({ ...baseEntry, output: ['Usage: open <1-30>'], tone: 'warning' })
+          write({ ...baseEntry, output: [`Usage: open <1-${totalAgents}>`], tone: 'warning' })
           break
         }
 
@@ -419,7 +424,7 @@ function TerminalPanel() {
         const agent = agents.find((item) => item.id === id)
 
         if (!agent) {
-          write({ ...baseEntry, output: [`Agent ${id} is outside the current 1–30 system.`], tone: 'warning' })
+          write({ ...baseEntry, output: [`Agent ${id} is outside the current 1–${totalAgents} system.`], tone: 'warning' })
           break
         }
 

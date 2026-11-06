@@ -482,7 +482,7 @@ function TerminalPanel() {
 }
 
 function HorizonPanel() {
-  return <Panel title="◇ SYSTEM HORIZON" action={<a className="horizon-header-cta" href="#robotics">EXPLORE THE NEXT FRONTIER →</a>} className="horizon-panel" id="system-horizon"><div className="horizon-image"><img src="/system-horizon.svg" alt="Futuristic path from software intelligence toward physical intelligence and robotics" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
+  return <Panel title="◇ SYSTEM HORIZON" action={<a className="horizon-header-cta" href="#robotics">EXPLORE THE NEXT FRONTIER →</a>} className="horizon-panel" id="system-horizon"><div className="horizon-image"><img src="/system-horizon.jpg" alt="Robotic arm working with a metal component in a coastal research studio at dusk" /><div className="horizon-copy"><strong>FROM SOFTWARE INTELLIGENCE TO THE PHYSICAL WORLD</strong><span>Agents → multimodal systems → physical intelligence → AI robotics → ?</span></div></div></Panel>
 }
 
 export default function App() {

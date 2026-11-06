@@ -3320,3 +3320,18 @@ nav a.active::after{
   background:linear-gradient(90deg,transparent,rgba(3,10,20,.42));
   text-shadow:0 1px 4px rgba(0,0,0,.95);
 }
+
+/* Cinematic robotics horizon: preserve panel dimensions and existing copy. */
+.horizon-image img{
+  object-position:64% 52%;
+  filter:saturate(1.03) contrast(1.03) brightness(.98);
+}
+.horizon-panel:hover .horizon-image img{
+  filter:saturate(1.07) contrast(1.04) brightness(1);
+}
+.horizon-image::before{
+  background:none;
+}
+.horizon-image::after{
+  background:linear-gradient(90deg,rgba(2,8,18,.82) 0%,rgba(2,8,18,.50) 40%,rgba(2,8,18,.08) 68%,transparent 100%);
+}

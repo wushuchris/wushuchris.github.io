@@ -3306,3 +3306,17 @@ nav a.active::after{
     transform:none!important;
   }
 }
+
+/* Photographic coastline: retain the panel's established size and quote placement. */
+.beach-panel img{
+  filter:saturate(1.02) contrast(1.02) brightness(.90);
+  object-position:40% 54%;
+}
+.beach-panel:hover img{
+  filter:saturate(1.06) contrast(1.03) brightness(.94);
+}
+.beach-panel blockquote{
+  z-index:4;
+  background:linear-gradient(90deg,transparent,rgba(3,10,20,.42));
+  text-shadow:0 1px 4px rgba(0,0,0,.95);
+}

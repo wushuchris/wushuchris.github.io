@@ -216,11 +216,11 @@ function AgentNetwork() {
           })}
         </div>
 
-        <div className="network__core">
+        <div className="network__core" aria-label={`${completedCount} of ${totalAgents} agents online. System ${nextAgent.id} next.`}>
           <div className="network__orb" aria-hidden="true" />
-          <strong>{totalAgents} AGENTS</strong>
-          <span>FOR AI ENGINEERS</span>
-          <small>{completedCount} ONLINE</small>
+          <strong>{agentProgress}</strong>
+          <span>AGENTS ONLINE</span>
+          <small>SYSTEM {nextAgent.id} NEXT</small>
         </div>
 
         {categories.map((category, index) => {
@@ -253,9 +253,15 @@ function AgentNetwork() {
             >
               <div className="network__cluster">
                 <b className="network__icon">{category.icon}</b>
-                <i />
-                <i />
-                <i />
+                {agents.filter((agent) => agent.category === category.name).map((agent) => (
+                  <i
+                    key={agent.id}
+                    className={`network__agent network__agent--${agent.status}`}
+                    role="img"
+                    aria-label={`System ${agent.id}: ${agent.title} — ${agent.status}`}
+                    title={`System ${agent.id}: ${agent.shortTitle} — ${agent.status.toUpperCase()}`}
+                  />
+                ))}
               </div>
 
               <div className="network__label">

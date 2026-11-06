@@ -3335,3 +3335,81 @@ nav a.active::after{
 .horizon-image::after{
   background:linear-gradient(90deg,rgba(2,8,18,.82) 0%,rgba(2,8,18,.50) 40%,rgba(2,8,18,.08) 68%,transparent 100%);
 }
+
+/* Agent map: actual system states and labels that fit the card, not the viewport. */
+.network{
+  container-type:inline-size;
+  container-name:agent-map;
+}
+.network__cluster .network__agent--planned{
+  background:transparent;
+  border:1px solid currentColor;
+  box-shadow:none;
+  opacity:.38;
+}
+.network__cluster .network__agent--next{
+  background:#ffc256;
+  border:1px solid #fff0c4;
+  box-shadow:0 0 9px rgba(255,194,86,.8);
+}
+.network__cluster i:nth-of-type(4){
+  left:50%;
+  right:auto;
+  top:4px;
+  bottom:auto;
+  transform:translateX(-50%);
+}
+.network__core small{
+  color:#ffc256;
+  letter-spacing:.08em;
+}
+@media (min-width:901px){
+  @container agent-map (max-width:760px){
+    .network__stage{
+      min-height:568px;
+    }
+    .network__category{
+      --map-radius:clamp(144px,calc(50cqw - 65px),184px);
+      width:78px;
+      height:78px;
+      transform:translate(-50%,-50%) rotate(var(--angle)) translateY(calc(var(--map-radius) * -1)) rotate(calc(var(--angle) * -1));
+      display:grid;
+      place-items:center;
+    }
+    .network__cluster{
+      width:78px;
+      height:78px;
+      border-radius:50%;
+      margin:0;
+    }
+    .network__category .network__label{
+      left:50%;
+      right:auto;
+      top:calc(100% + 8px);
+      bottom:auto;
+      width:104px;
+      transform:translateX(-50%);
+      align-items:center;
+      text-align:center;
+      font-size:.56rem;
+      line-height:1.18;
+    }
+    .network__label span{
+      font-size:.49rem;
+    }
+    .network__core{
+      width:clamp(170px,calc(100cqw - 300px),214px);
+      height:146px;
+      border-radius:50%;
+    }
+  }
+}
+@media (max-width:900px){
+  .network__core small{
+    font-size:.45rem;
+    letter-spacing:.04em;
+  }
+  .network__cluster i:nth-of-type(4){
+    top:2px;
+  }
+}
